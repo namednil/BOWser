@@ -13,7 +13,7 @@ BOWser requires the training and test files to be in the following format:
 Go into the code of parse.py, set the path to the datasets and its start symbol you want to try, then simply run
 python3 parse.py
 
-##Performance
+## Performance
 BOWser trains relatively fast (seconds to at most a few minutes) and gives surprisingly good results on some datasets that aren't too compositional.
 
 | dataset                     | accuracy |
@@ -29,7 +29,7 @@ BOWser trains relatively fast (seconds to at most a few minutes) and gives surpr
 Tried with varying activation functions (tanh or relu). With more feature engineering, slightly better results are to be expected.
 
 It makes sense that BOWser performance not so well on geoquery because it tends to be more compositional. 
-##Datasets and literature
+## Datasets and literature
 
 - _Kwiatkowski et al. 10_: Inducing Probabilistic CCG Grammars from Logical Form with Higher-Order Unification
 - variable free geoquery comes from [https://github.com/jimwhite/UBL] 
