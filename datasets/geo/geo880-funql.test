@@ -1,0 +1,850 @@
+which state is the smallest
+(answer (smallest (state all:e)))
+
+which is the longest river in usa
+(answer (longest (river (loc_2 (countryid usa:e)))))
+
+what are the highest points of all the states
+(answer (highest (place (loc_2 (state all:e)))))
+
+what are the major rivers in ohio
+(answer (major (river (loc_2 (stateid ohio:e)))))
+
+name the major rivers in florida
+(answer (major (river (loc_2 (stateid florida:e)))))
+
+what is the population of erie pennsylvania
+(answer (population_1 (cityid erie:e pa:e)))
+
+what state has the lowest population density
+(answer (smallest_one (density_1 (state all:e))))
+
+where is the smallest city
+(answer (loc_1 (smallest (city all:e))))
+
+which rivers run through states that border the state with the capital austin
+(answer (river (traverse_2 (state (next_to_2 (state (loc_1 (capital (cityid austin:e _:e)))))))))
+
+what is the lowest point in massachusetts
+(answer (lowest (place (loc_2 (stateid massachusetts:e)))))
+
+what is the population of maryland
+(answer (population_1 (stateid maryland:e)))
+
+what states does the mississippi river run through
+(answer (state (traverse_1 (riverid mississippi:e))))
+
+where is portland
+(answer (loc_1 (cityid portland:e _:e)))
+
+what are the cities in states through which the mississippi runs
+(answer (city (loc_2 (state (traverse_1 (riverid mississippi:e))))))
+
+how many people live in houston
+(answer (population_1 (cityid houston:e _:e)))
+
+what are the populations of states through which the mississippi river runs
+(answer (population_1 (state (traverse_1 (riverid mississippi:e)))))
+
+what states does the ohio river run through
+(answer (state (traverse_1 (riverid ohio:e))))
+
+which state has the most population
+(answer (largest_one (population_1 (state all:e))))
+
+what states surround kentucky
+(answer (state (next_to_2 (stateid kentucky:e))))
+
+what is the capital of north dakota
+(answer (capital (loc_2 (stateid north_dakota:e))))
+
+how many cities are there in the united states
+(answer (count (city (loc_2 (countryid usa:e)))))
+
+what is the largest capital city in the usa
+(answer (largest (capital (city (loc_2 (countryid usa:e))))))
+
+what are the populations of states which border texas
+(answer (population_1 (state (next_to_2 (stateid texas:e)))))
+
+what is the capital of states that have cities named durham
+(answer (capital (loc_2 (state (loc_1 (city (cityid durham:e _:e)))))))
+
+what is the biggest city in kansas
+(answer (largest (city (loc_2 (stateid kansas:e)))))
+
+what is the population of boulder
+(answer (population_1 (cityid boulder:e _:e)))
+
+which state has the greatest population
+(answer (largest_one (population_1 (state all:e))))
+
+what is the population of houston
+(answer (population_1 (cityid houston:e _:e)))
+
+how many states are there
+(answer (count (state all:e)))
+
+what states border the state with the smallest area
+(answer (state (next_to_2 (smallest_one (area_1 (state all:e))))))
+
+what is the longest river that flows through a state that borders indiana
+(answer (longest (river (traverse_2 (state (next_to_2 (stateid indiana:e)))))))
+
+what states border the most populous state
+(answer (state (next_to_2 (largest_one (population_1 (state all:e))))))
+
+what is the largest city in california
+(answer (largest (city (loc_2 (stateid california:e)))))
+
+what is the longest river in the states that border nebraska
+(answer (longest (river (loc_2 (state (next_to_2 (stateid nebraska:e)))))))
+
+what is the capital of new jersey
+(answer (capital (loc_2 (stateid new_jersey:e))))
+
+which state has the most major cities
+(answer (most (state (loc_1 (major (city all:e))))))
+
+how many colorado rivers are there
+(answer (count (riverid colorado:e)))
+
+what is the highest elevation in the united states
+(answer (highest (place (loc_2 (countryid usa:e)))))
+
+how many people live in the biggest city in new york state
+(answer (population_1 (largest (city (loc_2 (stateid new_york:e))))))
+
+what are the capitals of states that border missouri
+(answer (capital (loc_2 (state (next_to_2 (stateid missouri:e))))))
+
+what is the length of the river that runs through the most states
+(answer (len (most (river (traverse_2 (state all:e))))))
+
+what is the highest point in the state with capital austin
+(answer (highest (place (loc_2 (state (loc_1 (capital (cityid austin:e _:e))))))))
+
+what state has the largest capital
+(answer (state (loc_1 (largest (capital all:e)))))
+
+what is the capital of massachusetts
+(answer (capital (loc_2 (stateid massachusetts:e))))
+
+what states border new jersey
+(answer (state (next_to_2 (stateid new_jersey:e))))
+
+what states border states that the ohio runs through
+(answer (state (next_to_2 (state (traverse_1 (riverid ohio:e))))))
+
+which state has the highest elevation
+(answer (state (loc_1 (highest (place all:e)))))
+
+what is the most populous state through which the mississippi runs
+(answer (largest_one (population_1 (state (traverse_1 (riverid mississippi:e))))))
+
+which is the highest peak not in alaska
+(answer (highest (exclude (mountain all:e) (loc_2 (stateid alaska:e)))))
+
+what state has the most major cities
+(answer (most (state (loc_1 (major (city all:e))))))
+
+what states have cities named portland
+(answer (state (loc_1 (city (cityid portland:e _:e)))))
+
+what is the highest point of the state with the smallest population density
+(answer (highest (place (loc_2 (smallest_one (density_1 (state all:e)))))))
+
+what states border the state with the most major cities
+(answer (state (next_to_2 (most (state (loc_1 (major (city all:e))))))))
+
+what is the smallest city in the us
+(answer (smallest (city (loc_2 (countryid usa:e)))))
+
+what is the population of hawaii
+(answer (population_1 (stateid hawaii:e)))
+
+what states border indiana
+(answer (state (next_to_2 (stateid indiana:e))))
+
+how many states are in the usa
+(answer (count (state (loc_2 (countryid usa:e)))))
+
+what is the capital of illinois
+(answer (capital (loc_2 (stateid illinois:e))))
+
+what river traverses the state which borders the most states
+(answer (river (traverse_2 (most (state (next_to_2 (state all:e)))))))
+
+what states border the state that borders the most states
+(answer (state (next_to_2 (most (state (next_to_2 (state all:e)))))))
+
+how long is the colorado river
+(answer (len (riverid colorado:e)))
+
+what state has the longest river
+(answer (state (loc_1 (longest (river all:e)))))
+
+which states border kentucky
+(answer (state (next_to_2 (stateid kentucky:e))))
+
+give me the states that border utah
+(answer (state (next_to_2 (stateid utah:e))))
+
+what is the capital of the state with the largest population density
+(answer (capital (loc_2 (largest_one (density_1 (state all:e))))))
+
+what states have cities named plano
+(answer (state (loc_1 (city (cityid plano:e _:e)))))
+
+what states border the state with the most cities
+(answer (state (next_to_2 (most (state (loc_1 (city all:e)))))))
+
+how many citizens does the biggest city have in the usa
+(answer (population_1 (largest (city (loc_2 (countryid usa:e))))))
+//(answer (population_1 (largest (city all:e))))
+
+how many people reside in utah
+(answer (population_1 (stateid utah:e)))
+
+what states border montana
+(answer (state (next_to_2 (stateid montana:e))))
+
+what rivers run through new york
+(answer (river (traverse_2 (stateid new_york:e))))
+
+what rivers traverses the state which borders the most states
+(answer (river (traverse_2 (most (state (next_to_2 (state all:e)))))))
+
+count the states which have elevations lower than what alabama has
+(answer (count (state (low_point_2 (lower_2 (low_point_1 (stateid alabama:e)))))))
+
+what river flows through the most states
+(answer (most (river (traverse_2 (state all:e)))))
+
+what rivers are there in texas
+(answer (river (loc_2 (stateid texas:e))))
+
+which state has the highest point
+(answer (state (loc_1 (highest (place all:e)))))
+
+what state is austin in
+(answer (state (loc_1 (cityid austin:e _:e))))
+
+how high is the highest point of alabama
+(answer (elevation_1 (highest (place (loc_2 (stateid alabama:e))))))
+
+what is the length of the mississippi river
+(answer (len (riverid mississippi:e)))
+
+how many rivers does colorado have
+(answer (count (river (loc_2 (stateid colorado:e)))))
+
+what length is the mississippi
+(answer (len (riverid mississippi:e)))
+
+what state has the most rivers
+(answer (most (state (loc_1 (river all:e)))))
+
+how many people lived in austin
+(answer (population_1 (cityid austin:e _:e)))
+
+what city in the united states has the highest population density
+(answer (largest_one (density_1 (city (loc_2 (countryid usa:e))))))
+
+which states have a river
+(answer (state (loc_1 (river all:e))))
+
+what is the highest point in the usa
+(answer (highest (place (loc_2 (countryid usa:e)))))
+
+what is the area of florida
+(answer (area_1 (stateid florida:e)))
+
+what is the capital of california
+(answer (capital (loc_2 (stateid california:e))))
+
+what is the capital of the state with the largest population
+(answer (capital (loc_2 (largest_one (population_1 (state all:e))))))
+
+which state has the most major rivers
+(answer (most (state (loc_1 (major (river all:e))))))
+
+what is the capital of the state with the most inhabitants
+(answer (capital (loc_2 (largest_one (population_1 (state all:e))))))
+
+what is the capital of ohio
+(answer (capital (loc_2 (stateid ohio:e))))
+
+which state has the lowest elevation
+(answer (state (loc_1 (lowest (place all:e)))))
+
+what is the population of san antonio
+(answer (population_1 (cityid san_antonio:e _:e)))
+
+number of states bordering iowa
+(answer (count (state (next_to_2 (stateid iowa:e)))))
+
+which states does the chattahoochee river run through
+(answer (state (traverse_1 (riverid chattahoochee:e))))
+
+how many people live in detroit
+(answer (population_1 (cityid detroit:e _:e)))
+
+how many states do not have rivers
+(answer (count (exclude (state all:e) (loc_1 (river all:e)))))
+
+what states border states that border mississippi
+(answer (state (next_to_2 (state (next_to_2 (stateid mississippi:e))))))
+
+what are the major cities in the usa
+(answer (major (city (loc_2 (countryid usa:e)))))
+
+what is the most populous city
+(answer (largest_one (population_1 (city all:e))))
+
+what is the length of the longest river that runs through texas
+(answer (len (longest (river (traverse_2 (stateid texas:e))))))
+
+how high is mount mckinley
+(answer (elevation_1 (placeid mount_mckinley:e)))
+
+which state has the lowest population density
+(answer (smallest_one (density_1 (state all:e))))
+
+give me the number of rivers in california
+(answer (count (river (loc_2 (stateid california:e)))))
+
+what is the largest river in washington state
+(answer (longest (river (loc_2 (stateid washington:e)))))
+
+what is the capital of the florida state
+(answer (capital (loc_2 (stateid florida:e))))
+
+which city in california has the largest population
+(answer (largest_one (population_1 (city (loc_2 (stateid california:e))))))
+
+what is the highest point in montana
+(answer (highest (place (loc_2 (stateid montana:e)))))
+
+what is the lowest point in the state of california
+(answer (lowest (place (loc_2 (stateid california:e)))))
+
+what are the major cities in alaska
+(answer (major (city (loc_2 (stateid alaska:e)))))
+
+what is the combined area of all 50 states
+(answer (sum (area_1 (state all:e))))
+
+what is the lowest point in nebraska in meters
+(answer (lowest (place (loc_2 (stateid nebraska:e)))))
+
+which is the smallest state
+(answer (smallest (state all:e)))
+
+how many rivers are in iowa
+(answer (count (river (loc_2 (stateid iowa:e)))))
+
+what states border florida
+(answer (state (next_to_2 (stateid florida:e))))
+
+what rivers are in texas
+(answer (river (loc_2 (stateid texas:e))))
+
+what are the major cities in the state of california
+(answer (major (city (loc_2 (stateid california:e)))))
+
+what state is the largest in population
+(answer (largest_one (population_1 (state all:e))))
+
+what is the highest point in the states bordering colorado
+(answer (highest (place (loc_2 (state (next_to_2 (stateid colorado:e)))))))
+
+where is the highest point in hawaii
+(answer (loc_1 (highest (place (loc_2 (stateid hawaii:e))))))
+//(answer (highest (place (loc_2 (stateid hawaii:e)))))
+
+what is the highest point in iowa
+(answer (highest (place (loc_2 (stateid iowa:e)))))
+
+what are the populations of states through which the mississippi runs
+(answer (population_1 (state (traverse_1 (riverid mississippi:e)))))
+
+what is the capital of iowa
+(answer (capital (loc_2 (stateid iowa:e))))
+
+which state capital has the smallest population
+(answer (smallest_one (population_1 (capital all:e))))
+
+what is the biggest american city in a state with a river
+(answer (largest (city (loc_2 (state (loc_1 (river all:e)))))))
+
+which state borders hawaii
+(answer (state (next_to_2 (stateid hawaii:e))))
+
+how large is alaska
+(answer (size (stateid alaska:e)))
+
+what is the smallest state bordering wyoming
+(answer (smallest (state (next_to_2 (stateid wyoming:e)))))
+
+which state has the highest population density
+(answer (largest_one (density_1 (state all:e))))
+
+which of the states bordering pennsylvania has the largest population
+(answer (largest_one (population_1 (state (next_to_2 (stateid pennsylvania:e))))))
+
+what state borders new york
+(answer (state (next_to_2 (stateid new_york:e))))
+
+what is the highest point of the usa
+(answer (highest (place (loc_2 (countryid usa:e)))))
+
+how many people live in the united states
+(answer (population_1 (countryid usa:e)))
+
+what states border texas and have a major rive
+(answer (state (intersection (next_to_2 (stateid texas:e)) (loc_1 (major (river all:e))))))
+//(answer (intersection (state (next_to_2 (stateid texas:e))) (loc_1 (major (river all:e)))))
+
+where is the lowest point in maryland
+(answer (loc_1 (lowest (place (loc_2 (stateid maryland:e))))))
+//(answer (lowest (place (loc_2 (stateid maryland:e)))))
+
+what is the population of the state with the highest population density
+(answer (population_1 (largest_one (density_1 (state all:e)))))
+
+what states have cities named dallas
+(answer (state (loc_1 (city (cityid dallas:e _:e)))))
+
+what is the population of the state that borders the most states
+(answer (population_1 (most (state (next_to_2 (state all:e))))))
+
+how many states border the state with the largest population
+(answer (count (state (next_to_2 (largest_one (population_1 (state all:e)))))))
+
+what state has the largest area
+(answer (largest_one (area_1 (state all:e))))
+
+which states does the mississippi run through
+(answer (state (traverse_1 (riverid mississippi:e))))
+
+what is the total length of all rivers in the usa
+(answer (sum (len (river (loc_2 (countryid usa:e))))))
+//(answer (sum (len (river all:e))))
+
+how long is the delaware river
+(answer (len (riverid delaware:e)))
+
+what is the capital of colorado
+(answer (capital (loc_2 (stateid colorado:e))))
+
+what is the length of the colorado river
+(answer (len (riverid colorado:e)))
+
+what are the population densities of each us state
+(answer (density_1 (state all:e)))
+
+which state has the smallest average urban population
+(answer (smallest_one (density_1 (state all:e))))
+
+what states have cities named rochester
+(answer (state (loc_1 (city (cityid rochester:e _:e)))))
+
+which state has the lowest point that borders idaho
+(answer (state (loc_1 (lowest (place (loc_2 (next_to_2 (stateid idaho:e))))))))
+
+what is the capital of the smallest state
+(answer (capital (loc_2 (smallest (state all:e)))))
+
+what is the population of washington
+(answer (population_1 (stateid washington:e)))
+
+iowa borders how many states
+(answer (count (state (next_to_1 (stateid iowa:e)))))
+
+which states have cities named austin
+(answer (state (loc_1 (city (cityid austin:e _:e)))))
+
+how many rivers are in the state that has the most rivers
+(answer (count (river (loc_2 (most (state (loc_1 (river all:e))))))))
+
+rivers in new york
+(answer (river (loc_2 (stateid new_york:e))))
+
+what is the population density of maine
+(answer (density_1 (stateid maine:e)))
+
+what is the length of the river that flows through the most states
+(answer (len (most (river (traverse_2 (state all:e))))))
+
+what is the capital city in texas
+(answer (capital (city (loc_2 (stateid texas:e)))))
+
+what states does the missouri run through
+(answer (state (traverse_1 (riverid missouri:e))))
+
+what is the state with the largest area
+(answer (largest_one (area_1 (state all:e))))
+
+through which states does the longest river in texas run
+(answer (state (traverse_1 (longest (river (loc_2 (stateid texas:e)))))))
+
+what is the population of new mexico
+(answer (population_1 (stateid new_mexico:e)))
+
+what rivers are in states that border texas
+(answer (river (loc_2 (state (next_to_2 (stateid texas:e))))))
+
+which states border the missouri river
+(answer (state (next_to_2 (riverid missouri:e))))
+
+what is the smallest city in the usa
+(answer (smallest (city (loc_2 (countryid usa:e)))))
+
+how tall is mount mckinley
+(answer (elevation_1 (placeid mount_mckinley:e)))
+
+what is the highest point in delaware
+(answer (highest (place (loc_2 (stateid delaware:e)))))
+
+what is the lowest point in mississippi
+(answer (lowest (place (loc_2 (stateid mississippi:e)))))
+
+what state is miami in
+(answer (state (loc_1 (cityid miami:e _:e))))
+
+what is the lowest point of all states through which the colorado river runs through
+(answer (lowest (place (loc_2 (state (traverse_1 (riverid colorado:e)))))))
+
+what states contain at least one major rivers
+(answer (state (loc_1 (major (river all:e)))))
+
+what is the biggest city in louisiana
+(answer (largest (city (loc_2 (stateid louisiana:e)))))
+
+what is the most dense state in the usa
+(answer (largest_one (density_1 (state (loc_2 (countryid usa:e))))))
+
+what is the longest river in florida
+(answer (longest (river (loc_2 (stateid florida:e)))))
+
+what is the population of tempe arizona
+(answer (population_1 (cityid tempe:e az:e)))
+
+what is the largest city in the smallest state in the usa
+(answer (largest (city (loc_2 (smallest (state (loc_2 (countryid usa:e))))))))
+
+what is the population of alaska
+(answer (population_1 (stateid alaska:e)))
+
+what is the highest point in nevada in meters
+(answer (highest (place (loc_2 (stateid nevada:e)))))
+
+what major cities are located in pennsylvania
+(answer (major (city (loc_2 (stateid pennsylvania:e)))))
+
+what are the rivers in alaska
+(answer (river (loc_2 (stateid alaska:e))))
+
+which states capital city is the largest
+(answer (state (loc_1 (largest (city (capital_1 (state all:e)))))))
+
+where are mountains
+(answer (loc_1 (mountain all:e)))
+
+what state borders the most states
+(answer (most (state (next_to_2 (state all:e)))))
+
+what are the cities of the state with the highest point
+(answer (city (loc_2 (state (loc_1 (highest (place all:e)))))))
+
+how much population does texas have
+(answer (population_1 (stateid texas:e)))
+
+what are the major cities in new york
+(answer (major (city (loc_2 (stateid new_york:e)))))
+
+what is the highest mountain in us
+(answer (highest (mountain (loc_2 (countryid usa:e)))))
+
+what state contains the highest point of those the colorado river traverses
+(answer (state (loc_1 (highest (place (traverse_1 (riverid colorado:e)))))))
+//(answer (state (loc_1 (highest (place (loc_2 (state (traverse_1 (riverid colorado:e)))))))))
+
+where is dallas
+(answer (loc_1 (cityid dallas:e _:e)))
+
+where is the highest mountain of the united states
+(answer (loc_1 (highest (mountain (loc_2 (countryid usa:e))))))
+//(answer (highest (mountain (loc_2 (countryid usa:e)))))
+
+what states does the delaware river run through
+(answer (state (traverse_1 (riverid delaware:e))))
+
+how high is the highest point in america
+(answer (elevation_1 (highest (place (loc_2 (countryid usa:e))))))
+
+what city has the most people
+(answer (largest_one (population_1 (city all:e))))
+
+what is the density of the new york
+(answer (density_1 (stateid new_york:e)))
+
+what is the maximum elevation of san francisco
+(answer (highest (place (loc_2 (cityid san_francisco:e _:e)))))
+
+how many capitals does rhode island have
+(answer (count (capital (loc_2 (stateid rhode_island:e)))))
+
+what is the highest point in virginia
+(answer (highest (place (loc_2 (stateid virginia:e)))))
+
+how long is the ohio river
+(answer (len (riverid ohio:e)))
+
+how long is the longest river in california
+(answer (len (longest (river (loc_2 (stateid california:e))))))
+
+what is the state with the smallest area
+(answer (smallest_one (area_1 (state all:e))))
+
+which rivers do not run through texas
+(answer (exclude (river all:e) (traverse_2 (stateid texas:e))))
+
+which state has the most major rivers running through it
+(answer (most (state (traverse_1 (major (river all:e))))))
+
+what is the lowest point in usa
+(answer (lowest (place (loc_2 (countryid usa:e)))))
+
+what is the population of new york city
+(answer (population_1 (cityid new_york:e _:e)))
+
+which state has the biggest population
+(answer (largest_one (population_1 (state all:e))))
+
+what is the largest state that borders texas
+(answer (largest (state (next_to_2 (stateid texas:e)))))
+
+what is the largest city in rhode island
+(answer (largest (city (loc_2 (stateid rhode_island:e)))))
+
+what is the population of tucson
+(answer (population_1 (cityid tucson:e _:e)))
+
+what is the highest point in maine
+(answer (highest (place (loc_2 (stateid maine:e)))))
+
+how many people live in minneapolis minnesota
+(answer (population_1 (cityid minneapolis:e mn:e)))
+
+which rivers do not run through usa
+(answer (exclude (river all:e) (traverse_2 (countryid usa:e))))
+
+name all the rivers in colorado
+(answer (river (loc_2 (stateid colorado:e))))
+
+what is the longest river in the largest state
+(answer (longest (river (loc_2 (largest (state all:e))))))
+
+which state has the smallest population density
+(answer (smallest_one (density_1 (state all:e))))
+
+what is capital of the state with the lowest point
+(answer (capital (loc_2 (state (loc_1 (lowest (place all:e)))))))
+
+how long is the longest river in the usa
+(answer (len (longest (river (loc_2 (countryid usa:e))))))
+
+how many states border iowa
+(answer (count (state (next_to_2 (stateid iowa:e)))))
+
+what is the highest point in states bordering georgia
+(answer (highest (place (loc_2 (state (next_to_2 (stateid georgia:e)))))))
+
+san antonio is in what state
+(answer (state (loc_1 (cityid san_antonio:e _:e))))
+
+which river traverses most states
+(answer (most (river (traverse_2 (state all:e)))))
+
+what is the area of ohio
+(answer (area_1 (stateid ohio:e)))
+
+what is the longest river in the state with the most major cities
+(answer (longest (river (loc_2 (most (state (loc_1 (major (city all:e)))))))))
+
+which states does the longest river run through
+(answer (state (traverse_1 (longest (river all:e)))))
+
+how many states does usa have
+(answer (count (state (loc_2 (countryid usa:e)))))
+
+what is the population of the largest city in the state with the largest area
+(answer (population_1 (largest (city (loc_2 (largest_one (area_1 (state all:e))))))))
+
+what is the high point of wyoming
+(answer (high_point_1 (stateid wyoming:e)))
+
+what is the highest mountain in the us
+(answer (highest (mountain (loc_2 (countryid usa:e)))))
+
+how many residents live in texas
+(answer (population_1 (stateid texas:e)))
+
+what are the major cities in alabama
+(answer (major (city (loc_2 (stateid alabama:e)))))
+
+what is the smallest state that borders the most states
+(answer (smallest (most (state (next_to_2 (state all:e))))))
+
+what are all the rivers in texas
+(answer (river (loc_2 (stateid texas:e))))
+
+what is the least populous state
+(answer (smallest_one (population_1 (state all:e))))
+
+what is the population density of the largest state
+(answer (density_1 (largest (state all:e))))
+
+which river runs through most states
+(answer (most (river (traverse_2 (state all:e)))))
+
+which state is mount mckinley in
+(answer (state (loc_1 (placeid mount_mckinley:e))))
+
+which river goes through the most states
+(answer (most (river (traverse_2 (state all:e)))))
+
+what are the major cities in states through which the mississippi runs
+(answer (major (city (loc_2 (state (traverse_1 (riverid mississippi:e)))))))
+
+what is the highest elevation in texas
+(answer (highest (place (loc_2 (stateid texas:e)))))
+
+which states border illinois
+(answer (state (next_to_2 (stateid illinois:e))))
+
+how many states does tennessee border
+(answer (count (state (next_to_1 (stateid tennessee:e)))))
+
+how many people live in rhode island
+(answer (population_1 (stateid rhode_island:e)))
+
+number of people in boulder
+(answer (population_1 (cityid boulder:e _:e)))
+
+tell me what cities are in texas
+(answer (city (loc_2 (stateid texas:e))))
+
+what river runs through the state with the most cities
+(answer (river (traverse_2 (most (state (loc_1 (city all:e)))))))
+
+which states border the state with the smallest area
+(answer (state (next_to_2 (smallest_one (area_1 (state all:e))))))
+
+what states border michigan
+(answer (state (next_to_2 (stateid michigan:e))))
+
+what is the largest state bordering arkansas
+(answer (largest (state (next_to_2 (stateid arkansas:e)))))
+
+how long is the north platte river
+(answer (len (riverid north_platte:e)))
+
+what state bordering nevada has the largest population
+(answer (largest_one (population_1 (state (next_to_2 (stateid nevada:e))))))
+
+what is the capital of new york
+(answer (capital (loc_2 (stateid new_york:e))))
+
+which rivers run through states with fewest cities
+(answer (river (traverse_2 (fewest (state (loc_1 (city all:e)))))))
+
+what are the populations of the major cities of texas
+(answer (population_1 (major (city (loc_2 (stateid texas:e))))))
+
+what is the capital of the state with the longest river
+(answer (capital (loc_2 (state (loc_1 (longest (river all:e)))))))
+
+which state has the most rivers
+(answer (most (state (loc_1 (river all:e)))))
+
+how many people live in the capital of texas
+(answer (population_1 (capital (loc_2 (stateid texas:e)))))
+
+where is the most populated area of new mexico
+(answer (loc_1 (largest_one (population_1 (city (loc_2 (stateid new_mexico:e)))))))
+//(answer (largest_one (population_1 (city (loc_2 (stateid new_mexico:e))))))
+
+how many states have a higher point than the highest point of the state with the largest capital city in the us
+(answer (count (state (loc_1 (place (higher_2 (highest (place (loc_2 (state (loc_1 (largest (capital (city (loc_2 (countryid usa:e))))))))))))))))
+
+how many people live in mississippi
+(answer (population_1 (stateid mississippi:e)))
+
+what is the largest city in smallest state through which the mississippi runs
+(answer (largest (city (loc_2 (smallest (state (traverse_1 (riverid mississippi:e))))))))
+
+what states have cities named salt lake city
+(answer (state (loc_1 (city (cityid salt_lake_city:e _:e)))))
+
+what state has the smallest urban population
+(answer (smallest_one (population_1 (state all:e))))
+
+how tall is the highest point in montana
+(answer (elevation_1 (highest (place (loc_2 (stateid montana:e))))))
+
+what is the smallest state that the mississippi river runs through
+(answer (smallest (state (traverse_1 (riverid mississippi:e)))))
+
+what is the area of the texas state
+(answer (area_1 (stateid texas:e)))
+
+what are the major cities in vermont
+(answer (major (city (loc_2 (stateid vermont:e)))))
+
+what is the biggest capital city in the us
+(answer (largest (capital (city (loc_2 (countryid usa:e))))))
+
+where is the chattahoochee river
+(answer (loc_1 (riverid chattahoochee:e)))
+
+what is the population of utah
+(answer (population_1 (stateid utah:e)))
+
+how many states are there in the usa
+(answer (count (state (loc_2 (countryid usa:e)))))
+
+what states are next to arizona
+(answer (state (next_to_2 (stateid arizona:e))))
+
+what is the lowest point in arkansas
+(answer (lowest (place (loc_2 (stateid arkansas:e)))))
+
+what is the most populous state
+(answer (largest_one (population_1 (state all:e))))
+
+what is the population of mississippi
+(answer (population_1 (stateid mississippi:e)))
+
+which state borders the most states
+(answer (most (state (next_to_2 (state all:e)))))
+
+which us city has the highest population density
+(answer (largest_one (density_1 (city (loc_2 (countryid usa:e))))))
+//(answer (largest_one (density_1 (city all:e))))
+
+what is the area of wisconsin
+(answer (area_1 (stateid wisconsin:e)))
+
+how large is texas
+(answer (size (stateid texas:e)))
+
+what is the population of the smallest state
+(answer (population_1 (smallest (state all:e))))
+//(answer (smallest (population_1 (state all:e))))
+
+which is the density of the state that the largest river in the united states runs through
+(answer (density_1 (state (traverse_1 (longest (river (loc_2 (countryid usa:e))))))))
+

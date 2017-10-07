@@ -1,0 +1,984 @@
+(example
+  (utterance "Wie lange dauert die Vorbereitungszeit und Kochzeit für den Pudding laut Rezept")
+  (original "recipe whose preparation time is cooking time of rice pudding")
+  (targetFormula 
+    (call edu.stanford.nlp.sempre.overnight.SimpleWorld.listValue (call edu.stanford.nlp.sempre.overnight.SimpleWorld.filter (call edu.stanford.nlp.sempre.overnight.SimpleWorld.getProperty (call edu.stanford.nlp.sempre.overnight.SimpleWorld.singleton en.recipe) (string !type)) (string preparation_time) (string =) (call edu.stanford.nlp.sempre.overnight.SimpleWorld.getProperty en.recipe.rice_pudding (string cooking_time))))
+
+  )
+)
+(example
+  (utterance "Welche Rezepte benötigen weniger als zwei Zutaten")
+  (original "recipe that requires less than two ingredient")
+  (targetFormula 
+    (call edu.stanford.nlp.sempre.overnight.SimpleWorld.listValue (call edu.stanford.nlp.sempre.overnight.SimpleWorld.countComparative (call edu.stanford.nlp.sempre.overnight.SimpleWorld.getProperty (call edu.stanford.nlp.sempre.overnight.SimpleWorld.singleton en.recipe) (string !type)) (string requires) (string <) (number 2) (call edu.stanford.nlp.sempre.overnight.SimpleWorld.getProperty (call edu.stanford.nlp.sempre.overnight.SimpleWorld.singleton en.ingredient) (string !type))))
+
+  )
+)
+(example
+  (utterance "Welche Rezepte sind so ähnlich wie Milchreis")
+  (original "recipe whose cuisine is cuisine of rice pudding")
+  (targetFormula 
+    (call edu.stanford.nlp.sempre.overnight.SimpleWorld.listValue (call edu.stanford.nlp.sempre.overnight.SimpleWorld.filter (call edu.stanford.nlp.sempre.overnight.SimpleWorld.getProperty (call edu.stanford.nlp.sempre.overnight.SimpleWorld.singleton en.recipe) (string !type)) (string cuisine) (string =) (call edu.stanford.nlp.sempre.overnight.SimpleWorld.getProperty en.recipe.rice_pudding (string cuisine))))
+
+  )
+)
+(example
+  (utterance "Welches Rezept benötigt die gleiche Zutat wie Reispudding")
+  (original "recipe that requires ingredient that rice pudding requires")
+  (targetFormula 
+    (call edu.stanford.nlp.sempre.overnight.SimpleWorld.listValue (call edu.stanford.nlp.sempre.overnight.SimpleWorld.filter (call edu.stanford.nlp.sempre.overnight.SimpleWorld.getProperty (call edu.stanford.nlp.sempre.overnight.SimpleWorld.singleton en.recipe) (string !type)) (string requires) (string =) (call edu.stanford.nlp.sempre.overnight.SimpleWorld.filter (call edu.stanford.nlp.sempre.overnight.SimpleWorld.getProperty (call edu.stanford.nlp.sempre.overnight.SimpleWorld.singleton en.ingredient) (string !type)) (call edu.stanford.nlp.sempre.overnight.SimpleWorld.reverse (string requires)) (string =) en.recipe.rice_pudding)))
+
+  )
+)
+(example
+  (utterance "Welche Zutaten benötige ich für Reispudding oder Quiche")
+  (original "ingredient that rice pudding or quiche requires")
+  (targetFormula 
+    (call edu.stanford.nlp.sempre.overnight.SimpleWorld.listValue (call edu.stanford.nlp.sempre.overnight.SimpleWorld.filter (call edu.stanford.nlp.sempre.overnight.SimpleWorld.getProperty (call edu.stanford.nlp.sempre.overnight.SimpleWorld.singleton en.ingredient) (string !type)) (call edu.stanford.nlp.sempre.overnight.SimpleWorld.reverse (string requires)) (string =) (call edu.stanford.nlp.sempre.overnight.SimpleWorld.concat en.recipe.rice_pudding en.recipe.quiche)))
+
+  )
+)
+(example
+  (utterance "Kennst du ein Rezept für Mittagessen von vor 2004")
+  (original "recipe that is for lunch and whose posting date is 2004")
+  (targetFormula 
+    (call edu.stanford.nlp.sempre.overnight.SimpleWorld.listValue (call edu.stanford.nlp.sempre.overnight.SimpleWorld.filter (call edu.stanford.nlp.sempre.overnight.SimpleWorld.filter (call edu.stanford.nlp.sempre.overnight.SimpleWorld.getProperty (call edu.stanford.nlp.sempre.overnight.SimpleWorld.singleton en.recipe) (string !type)) (string meal) (string =) en.meal.lunch) (string posting_date) (string =) (date 2004 -1 -1)))
+
+  )
+)
+(example
+  (utterance "Welche Zutat wird in mindestens zwei Rezepten gebraucht")
+  (original "ingredient that at least two recipe requires")
+  (targetFormula 
+    (call edu.stanford.nlp.sempre.overnight.SimpleWorld.listValue (call edu.stanford.nlp.sempre.overnight.SimpleWorld.countComparative (call edu.stanford.nlp.sempre.overnight.SimpleWorld.getProperty (call edu.stanford.nlp.sempre.overnight.SimpleWorld.singleton en.ingredient) (string !type)) (call edu.stanford.nlp.sempre.overnight.SimpleWorld.reverse (string requires)) (string >=) (number 2) (call edu.stanford.nlp.sempre.overnight.SimpleWorld.getProperty (call edu.stanford.nlp.sempre.overnight.SimpleWorld.singleton en.recipe) (string !type))))
+
+  )
+)
+(example
+  (utterance "Welches Rezept gibt es für Mittagessen")
+  (original "meal that recipe that is for lunch is for")
+  (targetFormula 
+    (call edu.stanford.nlp.sempre.overnight.SimpleWorld.listValue (call edu.stanford.nlp.sempre.overnight.SimpleWorld.filter (call edu.stanford.nlp.sempre.overnight.SimpleWorld.getProperty (call edu.stanford.nlp.sempre.overnight.SimpleWorld.singleton en.meal) (string !type)) (call edu.stanford.nlp.sempre.overnight.SimpleWorld.reverse (string meal)) (string =) (call edu.stanford.nlp.sempre.overnight.SimpleWorld.filter (call edu.stanford.nlp.sempre.overnight.SimpleWorld.getProperty (call edu.stanford.nlp.sempre.overnight.SimpleWorld.singleton en.recipe) (string !type)) (string meal) (string =) en.meal.lunch)))
+
+  )
+)
+(example
+  (utterance "Braucht das Rezept zwei Küchen")
+  (original "recipe that has at least two cuisine")
+  (targetFormula 
+    (call edu.stanford.nlp.sempre.overnight.SimpleWorld.listValue (call edu.stanford.nlp.sempre.overnight.SimpleWorld.countComparative (call edu.stanford.nlp.sempre.overnight.SimpleWorld.getProperty (call edu.stanford.nlp.sempre.overnight.SimpleWorld.singleton en.recipe) (string !type)) (string cuisine) (string >=) (number 2)))
+
+  )
+)
+(example
+  (utterance "Welche Zutat wird für das Rezept des Mittagessens benötigt")
+  (original "ingredient that recipe that is for lunch requires")
+  (targetFormula 
+    (call edu.stanford.nlp.sempre.overnight.SimpleWorld.listValue (call edu.stanford.nlp.sempre.overnight.SimpleWorld.filter (call edu.stanford.nlp.sempre.overnight.SimpleWorld.getProperty (call edu.stanford.nlp.sempre.overnight.SimpleWorld.singleton en.ingredient) (string !type)) (call edu.stanford.nlp.sempre.overnight.SimpleWorld.reverse (string requires)) (string =) (call edu.stanford.nlp.sempre.overnight.SimpleWorld.filter (call edu.stanford.nlp.sempre.overnight.SimpleWorld.getProperty (call edu.stanford.nlp.sempre.overnight.SimpleWorld.singleton en.recipe) (string !type)) (string meal) (string =) en.meal.lunch)))
+
+  )
+)
+(example
+  (utterance "Welches Rezept benötigt weniger als zwei Zutaten")
+  (original "recipe that requires less than two ingredient")
+  (targetFormula 
+    (call edu.stanford.nlp.sempre.overnight.SimpleWorld.listValue (call edu.stanford.nlp.sempre.overnight.SimpleWorld.countComparative (call edu.stanford.nlp.sempre.overnight.SimpleWorld.getProperty (call edu.stanford.nlp.sempre.overnight.SimpleWorld.singleton en.recipe) (string !type)) (string requires) (string <) (number 2) (call edu.stanford.nlp.sempre.overnight.SimpleWorld.getProperty (call edu.stanford.nlp.sempre.overnight.SimpleWorld.singleton en.ingredient) (string !type))))
+
+  )
+)
+(example
+  (utterance "Welche Bewertung hat das Rezept")
+  (original "recipe that has two cuisine")
+  (targetFormula 
+    (call edu.stanford.nlp.sempre.overnight.SimpleWorld.listValue (call edu.stanford.nlp.sempre.overnight.SimpleWorld.countComparative (call edu.stanford.nlp.sempre.overnight.SimpleWorld.getProperty (call edu.stanford.nlp.sempre.overnight.SimpleWorld.singleton en.recipe) (string !type)) (string cuisine) (string =) (number 2)))
+
+  )
+)
+(example
+  (utterance "Welches Rezept ist für mehr als eine Mahlzeit")
+  (original "recipe that is for more than two meal")
+  (targetFormula 
+    (call edu.stanford.nlp.sempre.overnight.SimpleWorld.listValue (call edu.stanford.nlp.sempre.overnight.SimpleWorld.countComparative (call edu.stanford.nlp.sempre.overnight.SimpleWorld.getProperty (call edu.stanford.nlp.sempre.overnight.SimpleWorld.singleton en.recipe) (string !type)) (string meal) (string >) (number 2) (call edu.stanford.nlp.sempre.overnight.SimpleWorld.getProperty (call edu.stanford.nlp.sempre.overnight.SimpleWorld.singleton en.meal) (string !type))))
+
+  )
+)
+(example
+  (utterance "Welches Rezept ist nicht für das Mittagessen geeignet")
+  (original "recipe that not is for lunch")
+  (targetFormula 
+    (call edu.stanford.nlp.sempre.overnight.SimpleWorld.listValue (call edu.stanford.nlp.sempre.overnight.SimpleWorld.filter (call edu.stanford.nlp.sempre.overnight.SimpleWorld.getProperty (call edu.stanford.nlp.sempre.overnight.SimpleWorld.singleton en.recipe) (string !type)) (string meal) (string !=) en.meal.lunch))
+
+  )
+)
+(example
+  (utterance "Welches Rezept wurde mindestens 2004 veröffentlicht")
+  (original "recipe whose posting date is at least 2004")
+  (targetFormula 
+    (call edu.stanford.nlp.sempre.overnight.SimpleWorld.listValue (call edu.stanford.nlp.sempre.overnight.SimpleWorld.filter (call edu.stanford.nlp.sempre.overnight.SimpleWorld.getProperty (call edu.stanford.nlp.sempre.overnight.SimpleWorld.singleton en.recipe) (string !type)) (call edu.stanford.nlp.sempre.overnight.SimpleWorld.ensureNumericProperty (string posting_date)) (string >=) (call edu.stanford.nlp.sempre.overnight.SimpleWorld.ensureNumericEntity (date 2004 -1 -1))))
+
+  )
+)
+(example
+  (utterance "Welche Zutat wird von den wenigstens Rezepten benötigt")
+  (original "ingredient that the least number of recipe requires")
+  (targetFormula 
+    (call edu.stanford.nlp.sempre.overnight.SimpleWorld.listValue (call edu.stanford.nlp.sempre.overnight.SimpleWorld.countSuperlative (call edu.stanford.nlp.sempre.overnight.SimpleWorld.getProperty (call edu.stanford.nlp.sempre.overnight.SimpleWorld.singleton en.ingredient) (string !type)) (string min) (call edu.stanford.nlp.sempre.overnight.SimpleWorld.reverse (string requires)) (call edu.stanford.nlp.sempre.overnight.SimpleWorld.getProperty (call edu.stanford.nlp.sempre.overnight.SimpleWorld.singleton en.recipe) (string !type))))
+
+  )
+)
+(example
+  (utterance "Welches Rezept hat die kürzeste Zubereitungszeit")
+  (original "recipe that has the smallest preparation time")
+  (targetFormula 
+    (call edu.stanford.nlp.sempre.overnight.SimpleWorld.listValue (call edu.stanford.nlp.sempre.overnight.SimpleWorld.superlative (call edu.stanford.nlp.sempre.overnight.SimpleWorld.getProperty (call edu.stanford.nlp.sempre.overnight.SimpleWorld.singleton en.recipe) (string !type)) (string min) (call edu.stanford.nlp.sempre.overnight.SimpleWorld.ensureNumericProperty (string preparation_time))))
+
+  )
+)
+(example
+  (utterance "Wie viel beträgt die gesamte Kochzeit des Rezeptes")
+  (original "total cooking time of recipe")
+  (targetFormula 
+    (call edu.stanford.nlp.sempre.overnight.SimpleWorld.listValue (call edu.stanford.nlp.sempre.overnight.SimpleWorld.aggregate (string sum) (call edu.stanford.nlp.sempre.overnight.SimpleWorld.getProperty (call edu.stanford.nlp.sempre.overnight.SimpleWorld.getProperty (call edu.stanford.nlp.sempre.overnight.SimpleWorld.singleton en.recipe) (string !type)) (string cooking_time))))
+
+  )
+)
+(example
+  (utterance "Wann wurde das Rezept geschrieben")
+  (original "recipe whose posting date is at least 2004 or 2010")
+  (targetFormula 
+    (call edu.stanford.nlp.sempre.overnight.SimpleWorld.listValue (call edu.stanford.nlp.sempre.overnight.SimpleWorld.filter (call edu.stanford.nlp.sempre.overnight.SimpleWorld.getProperty (call edu.stanford.nlp.sempre.overnight.SimpleWorld.singleton en.recipe) (string !type)) (call edu.stanford.nlp.sempre.overnight.SimpleWorld.ensureNumericProperty (string posting_date)) (string >=) (call edu.stanford.nlp.sempre.overnight.SimpleWorld.ensureNumericEntity (call edu.stanford.nlp.sempre.overnight.SimpleWorld.concat (date 2004 -1 -1) (date 2010 -1 -1)))))
+
+  )
+)
+(example
+  (utterance "Welches Rezept ist nicht in 2004 geschrieben worden")
+  (original "recipe whose posting date is not 2004")
+  (targetFormula 
+    (call edu.stanford.nlp.sempre.overnight.SimpleWorld.listValue (call edu.stanford.nlp.sempre.overnight.SimpleWorld.filter (call edu.stanford.nlp.sempre.overnight.SimpleWorld.getProperty (call edu.stanford.nlp.sempre.overnight.SimpleWorld.singleton en.recipe) (string !type)) (string posting_date) (string !=) (date 2004 -1 -1)))
+
+  )
+)
+(example
+  (utterance "Welches Rezept hat eine geringere Zubereitungszeit als die Kochzeit von Milchreis")
+  (original "recipe whose preparation time is smaller than cooking time of rice pudding")
+  (targetFormula 
+    (call edu.stanford.nlp.sempre.overnight.SimpleWorld.listValue (call edu.stanford.nlp.sempre.overnight.SimpleWorld.filter (call edu.stanford.nlp.sempre.overnight.SimpleWorld.getProperty (call edu.stanford.nlp.sempre.overnight.SimpleWorld.singleton en.recipe) (string !type)) (call edu.stanford.nlp.sempre.overnight.SimpleWorld.ensureNumericProperty (string preparation_time)) (string <) (call edu.stanford.nlp.sempre.overnight.SimpleWorld.ensureNumericEntity (call edu.stanford.nlp.sempre.overnight.SimpleWorld.getProperty en.recipe.rice_pudding (string cooking_time)))))
+
+  )
+)
+(example
+  (utterance "Welche Mahlzeit hat zwei Rezepte")
+  (original "meal that two recipe is for")
+  (targetFormula 
+    (call edu.stanford.nlp.sempre.overnight.SimpleWorld.listValue (call edu.stanford.nlp.sempre.overnight.SimpleWorld.countComparative (call edu.stanford.nlp.sempre.overnight.SimpleWorld.getProperty (call edu.stanford.nlp.sempre.overnight.SimpleWorld.singleton en.meal) (string !type)) (call edu.stanford.nlp.sempre.overnight.SimpleWorld.reverse (string meal)) (string =) (number 2) (call edu.stanford.nlp.sempre.overnight.SimpleWorld.getProperty (call edu.stanford.nlp.sempre.overnight.SimpleWorld.singleton en.recipe) (string !type))))
+
+  )
+)
+(example
+  (utterance "Wurde das Rezept vor dem Rezept von Reispudding gepostet")
+  (original "recipe whose posting date is smaller than posting date of rice pudding")
+  (targetFormula 
+    (call edu.stanford.nlp.sempre.overnight.SimpleWorld.listValue (call edu.stanford.nlp.sempre.overnight.SimpleWorld.filter (call edu.stanford.nlp.sempre.overnight.SimpleWorld.getProperty (call edu.stanford.nlp.sempre.overnight.SimpleWorld.singleton en.recipe) (string !type)) (call edu.stanford.nlp.sempre.overnight.SimpleWorld.ensureNumericProperty (string posting_date)) (string <) (call edu.stanford.nlp.sempre.overnight.SimpleWorld.ensureNumericEntity (call edu.stanford.nlp.sempre.overnight.SimpleWorld.getProperty en.recipe.rice_pudding (string posting_date)))))
+
+  )
+)
+(example
+  (utterance "Welches Rezept wurde gerade erst gepostet")
+  (original "recipe that has the smallest posting date")
+  (targetFormula 
+    (call edu.stanford.nlp.sempre.overnight.SimpleWorld.listValue (call edu.stanford.nlp.sempre.overnight.SimpleWorld.superlative (call edu.stanford.nlp.sempre.overnight.SimpleWorld.getProperty (call edu.stanford.nlp.sempre.overnight.SimpleWorld.singleton en.recipe) (string !type)) (string min) (call edu.stanford.nlp.sempre.overnight.SimpleWorld.ensureNumericProperty (string posting_date))))
+
+  )
+)
+(example
+  (utterance "Rezept mit der kürzesten Vorbeitungszeit")
+  (original "recipe that has the smallest preparation time")
+  (targetFormula 
+    (call edu.stanford.nlp.sempre.overnight.SimpleWorld.listValue (call edu.stanford.nlp.sempre.overnight.SimpleWorld.superlative (call edu.stanford.nlp.sempre.overnight.SimpleWorld.getProperty (call edu.stanford.nlp.sempre.overnight.SimpleWorld.singleton en.recipe) (string !type)) (string min) (call edu.stanford.nlp.sempre.overnight.SimpleWorld.ensureNumericProperty (string preparation_time))))
+
+  )
+)
+(example
+  (utterance "Welche Zutaten werden für Milchreis oder Quiche benötigt")
+  (original "ingredient that rice pudding or quiche requires")
+  (targetFormula 
+    (call edu.stanford.nlp.sempre.overnight.SimpleWorld.listValue (call edu.stanford.nlp.sempre.overnight.SimpleWorld.filter (call edu.stanford.nlp.sempre.overnight.SimpleWorld.getProperty (call edu.stanford.nlp.sempre.overnight.SimpleWorld.singleton en.ingredient) (string !type)) (call edu.stanford.nlp.sempre.overnight.SimpleWorld.reverse (string requires)) (string =) (call edu.stanford.nlp.sempre.overnight.SimpleWorld.concat en.recipe.rice_pudding en.recipe.quiche)))
+
+  )
+)
+(example
+  (utterance "Welche Rezepte sind als Mittagessen oder Abendessen gedacht")
+  (original "recipe that is for lunch or dinner")
+  (targetFormula 
+    (call edu.stanford.nlp.sempre.overnight.SimpleWorld.listValue (call edu.stanford.nlp.sempre.overnight.SimpleWorld.filter (call edu.stanford.nlp.sempre.overnight.SimpleWorld.getProperty (call edu.stanford.nlp.sempre.overnight.SimpleWorld.singleton en.recipe) (string !type)) (string meal) (string =) (call edu.stanford.nlp.sempre.overnight.SimpleWorld.concat en.meal.lunch en.meal.dinner)))
+
+  )
+)
+(example
+  (utterance "Welches Gericht hat die geringste Anzahl an Rezepte")
+  (original "meal that the least number of recipe is for")
+  (targetFormula 
+    (call edu.stanford.nlp.sempre.overnight.SimpleWorld.listValue (call edu.stanford.nlp.sempre.overnight.SimpleWorld.countSuperlative (call edu.stanford.nlp.sempre.overnight.SimpleWorld.getProperty (call edu.stanford.nlp.sempre.overnight.SimpleWorld.singleton en.meal) (string !type)) (string min) (call edu.stanford.nlp.sempre.overnight.SimpleWorld.reverse (string meal)) (call edu.stanford.nlp.sempre.overnight.SimpleWorld.getProperty (call edu.stanford.nlp.sempre.overnight.SimpleWorld.singleton en.recipe) (string !type))))
+
+  )
+)
+(example
+  (utterance "Für wie lange muss man Reispudding kochen")
+  (original "cooking time of rice pudding")
+  (targetFormula 
+    (call edu.stanford.nlp.sempre.overnight.SimpleWorld.listValue (call edu.stanford.nlp.sempre.overnight.SimpleWorld.getProperty en.recipe.rice_pudding (string cooking_time)))
+
+  )
+)
+(example
+  (utterance "Welche Rezepte wurden mindestens 2004 oder 2010 gepostet")
+  (original "recipe whose posting date is at least 2004 or 2010")
+  (targetFormula 
+    (call edu.stanford.nlp.sempre.overnight.SimpleWorld.listValue (call edu.stanford.nlp.sempre.overnight.SimpleWorld.filter (call edu.stanford.nlp.sempre.overnight.SimpleWorld.getProperty (call edu.stanford.nlp.sempre.overnight.SimpleWorld.singleton en.recipe) (string !type)) (call edu.stanford.nlp.sempre.overnight.SimpleWorld.ensureNumericProperty (string posting_date)) (string >=) (call edu.stanford.nlp.sempre.overnight.SimpleWorld.ensureNumericEntity (call edu.stanford.nlp.sempre.overnight.SimpleWorld.concat (date 2004 -1 -1) (date 2010 -1 -1)))))
+
+  )
+)
+(example
+  (utterance "Was ist das Rezept das als letztes gepostet wurde")
+  (original "recipe that has the largest posting date")
+  (targetFormula 
+    (call edu.stanford.nlp.sempre.overnight.SimpleWorld.listValue (call edu.stanford.nlp.sempre.overnight.SimpleWorld.superlative (call edu.stanford.nlp.sempre.overnight.SimpleWorld.getProperty (call edu.stanford.nlp.sempre.overnight.SimpleWorld.singleton en.recipe) (string !type)) (string max) (call edu.stanford.nlp.sempre.overnight.SimpleWorld.ensureNumericProperty (string posting_date))))
+
+  )
+)
+(example
+  (utterance "Welche Rezepte wurden 2004 oder 2010 veröffentlicht")
+  (original "recipe whose posting date is 2004 or 2010")
+  (targetFormula 
+    (call edu.stanford.nlp.sempre.overnight.SimpleWorld.listValue (call edu.stanford.nlp.sempre.overnight.SimpleWorld.filter (call edu.stanford.nlp.sempre.overnight.SimpleWorld.getProperty (call edu.stanford.nlp.sempre.overnight.SimpleWorld.singleton en.recipe) (string !type)) (string posting_date) (string =) (call edu.stanford.nlp.sempre.overnight.SimpleWorld.concat (date 2004 -1 -1) (date 2010 -1 -1))))
+
+  )
+)
+(example
+  (utterance "Ergibt dieses Rezept zwei Mahlzeiten")
+  (original "recipe that is for two meal")
+  (targetFormula 
+    (call edu.stanford.nlp.sempre.overnight.SimpleWorld.listValue (call edu.stanford.nlp.sempre.overnight.SimpleWorld.countComparative (call edu.stanford.nlp.sempre.overnight.SimpleWorld.getProperty (call edu.stanford.nlp.sempre.overnight.SimpleWorld.singleton en.recipe) (string !type)) (string meal) (string =) (number 2) (call edu.stanford.nlp.sempre.overnight.SimpleWorld.getProperty (call edu.stanford.nlp.sempre.overnight.SimpleWorld.singleton en.meal) (string !type))))
+
+  )
+)
+(example
+  (utterance "Für welche Mahlzeit benötigt man Reispudding")
+  (original "meal that rice pudding is for and that rice pudding is for")
+  (targetFormula 
+    (call edu.stanford.nlp.sempre.overnight.SimpleWorld.listValue (call edu.stanford.nlp.sempre.overnight.SimpleWorld.filter (call edu.stanford.nlp.sempre.overnight.SimpleWorld.filter (call edu.stanford.nlp.sempre.overnight.SimpleWorld.getProperty (call edu.stanford.nlp.sempre.overnight.SimpleWorld.singleton en.meal) (string !type)) (call edu.stanford.nlp.sempre.overnight.SimpleWorld.reverse (string meal)) (string =) en.recipe.rice_pudding) (call edu.stanford.nlp.sempre.overnight.SimpleWorld.reverse (string meal)) (string =) en.recipe.rice_pudding))
+
+  )
+)
+(example
+  (utterance "Welches Rezept benötigt nur 2 Zutaten")
+  (original "recipe that requires two ingredient")
+  (targetFormula 
+    (call edu.stanford.nlp.sempre.overnight.SimpleWorld.listValue (call edu.stanford.nlp.sempre.overnight.SimpleWorld.countComparative (call edu.stanford.nlp.sempre.overnight.SimpleWorld.getProperty (call edu.stanford.nlp.sempre.overnight.SimpleWorld.singleton en.recipe) (string !type)) (string requires) (string =) (number 2) (call edu.stanford.nlp.sempre.overnight.SimpleWorld.getProperty (call edu.stanford.nlp.sempre.overnight.SimpleWorld.singleton en.ingredient) (string !type))))
+
+  )
+)
+(example
+  (utterance "Welches Rezept benötigt eine längere Zubereitungszeit als Reispudding")
+  (original "recipe whose cooking time is larger than preparation time of rice pudding")
+  (targetFormula 
+    (call edu.stanford.nlp.sempre.overnight.SimpleWorld.listValue (call edu.stanford.nlp.sempre.overnight.SimpleWorld.filter (call edu.stanford.nlp.sempre.overnight.SimpleWorld.getProperty (call edu.stanford.nlp.sempre.overnight.SimpleWorld.singleton en.recipe) (string !type)) (call edu.stanford.nlp.sempre.overnight.SimpleWorld.ensureNumericProperty (string cooking_time)) (string >) (call edu.stanford.nlp.sempre.overnight.SimpleWorld.ensureNumericEntity (call edu.stanford.nlp.sempre.overnight.SimpleWorld.getProperty en.recipe.rice_pudding (string preparation_time)))))
+
+  )
+)
+(example
+  (utterance "Welches Rezept hat mindestens die gleiche Kochzeit wie Reispudding")
+  (original "recipe whose preparation time is at least cooking time of rice pudding")
+  (targetFormula 
+    (call edu.stanford.nlp.sempre.overnight.SimpleWorld.listValue (call edu.stanford.nlp.sempre.overnight.SimpleWorld.filter (call edu.stanford.nlp.sempre.overnight.SimpleWorld.getProperty (call edu.stanford.nlp.sempre.overnight.SimpleWorld.singleton en.recipe) (string !type)) (call edu.stanford.nlp.sempre.overnight.SimpleWorld.ensureNumericProperty (string preparation_time)) (string >=) (call edu.stanford.nlp.sempre.overnight.SimpleWorld.ensureNumericEntity (call edu.stanford.nlp.sempre.overnight.SimpleWorld.getProperty en.recipe.rice_pudding (string cooking_time)))))
+
+  )
+)
+(example
+  (utterance "Zu welchem Gericht passt Reispudding")
+  (original "meal that rice pudding is for")
+  (targetFormula 
+    (call edu.stanford.nlp.sempre.overnight.SimpleWorld.listValue (call edu.stanford.nlp.sempre.overnight.SimpleWorld.filter (call edu.stanford.nlp.sempre.overnight.SimpleWorld.getProperty (call edu.stanford.nlp.sempre.overnight.SimpleWorld.singleton en.meal) (string !type)) (call edu.stanford.nlp.sempre.overnight.SimpleWorld.reverse (string meal)) (string =) en.recipe.rice_pudding))
+
+  )
+)
+(example
+  (utterance "Welche Mahlzeit für die laut Rezept Milch benötigt wird")
+  (original "meal that recipe that requires milk is for")
+  (targetFormula 
+    (call edu.stanford.nlp.sempre.overnight.SimpleWorld.listValue (call edu.stanford.nlp.sempre.overnight.SimpleWorld.filter (call edu.stanford.nlp.sempre.overnight.SimpleWorld.getProperty (call edu.stanford.nlp.sempre.overnight.SimpleWorld.singleton en.meal) (string !type)) (call edu.stanford.nlp.sempre.overnight.SimpleWorld.reverse (string meal)) (string =) (call edu.stanford.nlp.sempre.overnight.SimpleWorld.filter (call edu.stanford.nlp.sempre.overnight.SimpleWorld.getProperty (call edu.stanford.nlp.sempre.overnight.SimpleWorld.singleton en.recipe) (string !type)) (string requires) (string =) en.ingredient.milk)))
+
+  )
+)
+(example
+  (utterance "Welches Rezept wurde mindestens zur selben Zeit wie Milchreis veröffentlicht")
+  (original "recipe whose posting date is at least posting date of rice pudding")
+  (targetFormula 
+    (call edu.stanford.nlp.sempre.overnight.SimpleWorld.listValue (call edu.stanford.nlp.sempre.overnight.SimpleWorld.filter (call edu.stanford.nlp.sempre.overnight.SimpleWorld.getProperty (call edu.stanford.nlp.sempre.overnight.SimpleWorld.singleton en.recipe) (string !type)) (call edu.stanford.nlp.sempre.overnight.SimpleWorld.ensureNumericProperty (string posting_date)) (string >=) (call edu.stanford.nlp.sempre.overnight.SimpleWorld.ensureNumericEntity (call edu.stanford.nlp.sempre.overnight.SimpleWorld.getProperty en.recipe.rice_pudding (string posting_date)))))
+
+  )
+)
+(example
+  (utterance "Welches Rezept wird für die wenigsten Rezepte genutzt")
+  (original "recipe that is for the least number of meal")
+  (targetFormula 
+    (call edu.stanford.nlp.sempre.overnight.SimpleWorld.listValue (call edu.stanford.nlp.sempre.overnight.SimpleWorld.countSuperlative (call edu.stanford.nlp.sempre.overnight.SimpleWorld.getProperty (call edu.stanford.nlp.sempre.overnight.SimpleWorld.singleton en.recipe) (string !type)) (string min) (string meal) (call edu.stanford.nlp.sempre.overnight.SimpleWorld.getProperty (call edu.stanford.nlp.sempre.overnight.SimpleWorld.singleton en.meal) (string !type))))
+
+  )
+)
+(example
+  (utterance "Welche Zutat wird für das Rezept zum Mittagessen benötigt")
+  (original "ingredient that recipe that is for lunch requires")
+  (targetFormula 
+    (call edu.stanford.nlp.sempre.overnight.SimpleWorld.listValue (call edu.stanford.nlp.sempre.overnight.SimpleWorld.filter (call edu.stanford.nlp.sempre.overnight.SimpleWorld.getProperty (call edu.stanford.nlp.sempre.overnight.SimpleWorld.singleton en.ingredient) (string !type)) (call edu.stanford.nlp.sempre.overnight.SimpleWorld.reverse (string requires)) (string =) (call edu.stanford.nlp.sempre.overnight.SimpleWorld.filter (call edu.stanford.nlp.sempre.overnight.SimpleWorld.getProperty (call edu.stanford.nlp.sempre.overnight.SimpleWorld.singleton en.recipe) (string !type)) (string meal) (string =) en.meal.lunch)))
+
+  )
+)
+(example
+  (utterance "Welches Rezept wurde von zwei Küchen gekocht und für gut empfunden")
+  (original "recipe that has at least two cuisine")
+  (targetFormula 
+    (call edu.stanford.nlp.sempre.overnight.SimpleWorld.listValue (call edu.stanford.nlp.sempre.overnight.SimpleWorld.countComparative (call edu.stanford.nlp.sempre.overnight.SimpleWorld.getProperty (call edu.stanford.nlp.sempre.overnight.SimpleWorld.singleton en.recipe) (string !type)) (string cuisine) (string >=) (number 2)))
+
+  )
+)
+(example
+  (utterance "Welches Rezept hat eine Vorbereitungszeit die dieselbe Dauer hat wie die Kochzeit von Reispudding")
+  (original "recipe whose preparation time is cooking time of rice pudding")
+  (targetFormula 
+    (call edu.stanford.nlp.sempre.overnight.SimpleWorld.listValue (call edu.stanford.nlp.sempre.overnight.SimpleWorld.filter (call edu.stanford.nlp.sempre.overnight.SimpleWorld.getProperty (call edu.stanford.nlp.sempre.overnight.SimpleWorld.singleton en.recipe) (string !type)) (string preparation_time) (string =) (call edu.stanford.nlp.sempre.overnight.SimpleWorld.getProperty en.recipe.rice_pudding (string cooking_time))))
+
+  )
+)
+(example
+  (utterance "Welche Zutat von diesem Rezept benötigt Milch")
+  (original "ingredient that recipe that requires milk requires")
+  (targetFormula 
+    (call edu.stanford.nlp.sempre.overnight.SimpleWorld.listValue (call edu.stanford.nlp.sempre.overnight.SimpleWorld.filter (call edu.stanford.nlp.sempre.overnight.SimpleWorld.getProperty (call edu.stanford.nlp.sempre.overnight.SimpleWorld.singleton en.ingredient) (string !type)) (call edu.stanford.nlp.sempre.overnight.SimpleWorld.reverse (string requires)) (string =) (call edu.stanford.nlp.sempre.overnight.SimpleWorld.filter (call edu.stanford.nlp.sempre.overnight.SimpleWorld.getProperty (call edu.stanford.nlp.sempre.overnight.SimpleWorld.singleton en.recipe) (string !type)) (string requires) (string =) en.ingredient.milk)))
+
+  )
+)
+(example
+  (utterance "Welche Zutaten werden von einem Rezept aus dem Jahr 2004 benötigt")
+  (original "ingredient that recipe whose posting date is 2004 requires")
+  (targetFormula 
+    (call edu.stanford.nlp.sempre.overnight.SimpleWorld.listValue (call edu.stanford.nlp.sempre.overnight.SimpleWorld.filter (call edu.stanford.nlp.sempre.overnight.SimpleWorld.getProperty (call edu.stanford.nlp.sempre.overnight.SimpleWorld.singleton en.ingredient) (string !type)) (call edu.stanford.nlp.sempre.overnight.SimpleWorld.reverse (string requires)) (string =) (call edu.stanford.nlp.sempre.overnight.SimpleWorld.filter (call edu.stanford.nlp.sempre.overnight.SimpleWorld.getProperty (call edu.stanford.nlp.sempre.overnight.SimpleWorld.singleton en.recipe) (string !type)) (string posting_date) (string =) (date 2004 -1 -1))))
+
+  )
+)
+(example
+  (utterance "Welche Rezepte nehmen mehr Zubereitungszeit in Anspruch als Reispudding")
+  (original "recipe whose cooking time is larger than cooking time of rice pudding")
+  (targetFormula 
+    (call edu.stanford.nlp.sempre.overnight.SimpleWorld.listValue (call edu.stanford.nlp.sempre.overnight.SimpleWorld.filter (call edu.stanford.nlp.sempre.overnight.SimpleWorld.getProperty (call edu.stanford.nlp.sempre.overnight.SimpleWorld.singleton en.recipe) (string !type)) (call edu.stanford.nlp.sempre.overnight.SimpleWorld.ensureNumericProperty (string cooking_time)) (string >) (call edu.stanford.nlp.sempre.overnight.SimpleWorld.ensureNumericEntity (call edu.stanford.nlp.sempre.overnight.SimpleWorld.getProperty en.recipe.rice_pudding (string cooking_time)))))
+
+  )
+)
+(example
+  (utterance "Welches Rezept wurde 204 gepostet")
+  (original "recipe whose posting date is 2004 and whose posting date is 2004")
+  (targetFormula 
+    (call edu.stanford.nlp.sempre.overnight.SimpleWorld.listValue (call edu.stanford.nlp.sempre.overnight.SimpleWorld.filter (call edu.stanford.nlp.sempre.overnight.SimpleWorld.filter (call edu.stanford.nlp.sempre.overnight.SimpleWorld.getProperty (call edu.stanford.nlp.sempre.overnight.SimpleWorld.singleton en.recipe) (string !type)) (string posting_date) (string =) (date 2004 -1 -1)) (string posting_date) (string =) (date 2004 -1 -1)))
+
+  )
+)
+(example
+  (utterance "Wie lang ist die Kochzeit bei Milchreisrezepten")
+  (original "recipe whose cooking time is cooking time of rice pudding")
+  (targetFormula 
+    (call edu.stanford.nlp.sempre.overnight.SimpleWorld.listValue (call edu.stanford.nlp.sempre.overnight.SimpleWorld.filter (call edu.stanford.nlp.sempre.overnight.SimpleWorld.getProperty (call edu.stanford.nlp.sempre.overnight.SimpleWorld.singleton en.recipe) (string !type)) (string cooking_time) (string =) (call edu.stanford.nlp.sempre.overnight.SimpleWorld.getProperty en.recipe.rice_pudding (string cooking_time))))
+
+  )
+)
+(example
+  (utterance "Welches Rezept wurde mindestens 2004 veröffentlicht")
+  (original "recipe whose posting date is at least 2004")
+  (targetFormula 
+    (call edu.stanford.nlp.sempre.overnight.SimpleWorld.listValue (call edu.stanford.nlp.sempre.overnight.SimpleWorld.filter (call edu.stanford.nlp.sempre.overnight.SimpleWorld.getProperty (call edu.stanford.nlp.sempre.overnight.SimpleWorld.singleton en.recipe) (string !type)) (call edu.stanford.nlp.sempre.overnight.SimpleWorld.ensureNumericProperty (string posting_date)) (string >=) (call edu.stanford.nlp.sempre.overnight.SimpleWorld.ensureNumericEntity (date 2004 -1 -1))))
+
+  )
+)
+(example
+  (utterance "Welches Gericht ist für mindestens zwei Rezepte nötig")
+  (original "meal that at most two recipe is for")
+  (targetFormula 
+    (call edu.stanford.nlp.sempre.overnight.SimpleWorld.listValue (call edu.stanford.nlp.sempre.overnight.SimpleWorld.countComparative (call edu.stanford.nlp.sempre.overnight.SimpleWorld.getProperty (call edu.stanford.nlp.sempre.overnight.SimpleWorld.singleton en.meal) (string !type)) (call edu.stanford.nlp.sempre.overnight.SimpleWorld.reverse (string meal)) (string <=) (number 2) (call edu.stanford.nlp.sempre.overnight.SimpleWorld.getProperty (call edu.stanford.nlp.sempre.overnight.SimpleWorld.singleton en.recipe) (string !type))))
+
+  )
+)
+(example
+  (utterance "Welches Rezept hat die Kochzeit von Reispudding")
+  (original "recipe whose cooking time is cooking time of rice pudding")
+  (targetFormula 
+    (call edu.stanford.nlp.sempre.overnight.SimpleWorld.listValue (call edu.stanford.nlp.sempre.overnight.SimpleWorld.filter (call edu.stanford.nlp.sempre.overnight.SimpleWorld.getProperty (call edu.stanford.nlp.sempre.overnight.SimpleWorld.singleton en.recipe) (string !type)) (string cooking_time) (string =) (call edu.stanford.nlp.sempre.overnight.SimpleWorld.getProperty en.recipe.rice_pudding (string cooking_time))))
+
+  )
+)
+(example
+  (utterance "Welches Rezept ist für höchstens zwei Mahlzeiten")
+  (original "recipe that is for at most two meal")
+  (targetFormula 
+    (call edu.stanford.nlp.sempre.overnight.SimpleWorld.listValue (call edu.stanford.nlp.sempre.overnight.SimpleWorld.countComparative (call edu.stanford.nlp.sempre.overnight.SimpleWorld.getProperty (call edu.stanford.nlp.sempre.overnight.SimpleWorld.singleton en.recipe) (string !type)) (string meal) (string <=) (number 2) (call edu.stanford.nlp.sempre.overnight.SimpleWorld.getProperty (call edu.stanford.nlp.sempre.overnight.SimpleWorld.singleton en.meal) (string !type))))
+
+  )
+)
+(example
+  (utterance "Das Einlieferungsdatum welchen Rezeptes ist vor 2004")
+  (original "recipe whose posting date is smaller than 2004")
+  (targetFormula 
+    (call edu.stanford.nlp.sempre.overnight.SimpleWorld.listValue (call edu.stanford.nlp.sempre.overnight.SimpleWorld.filter (call edu.stanford.nlp.sempre.overnight.SimpleWorld.getProperty (call edu.stanford.nlp.sempre.overnight.SimpleWorld.singleton en.recipe) (string !type)) (call edu.stanford.nlp.sempre.overnight.SimpleWorld.ensureNumericProperty (string posting_date)) (string <) (call edu.stanford.nlp.sempre.overnight.SimpleWorld.ensureNumericEntity (date 2004 -1 -1))))
+
+  )
+)
+(example
+  (utterance "Welches Rezept zum Mittagessen benötigt Milch")
+  (original "recipe that is for lunch and that requires milk")
+  (targetFormula 
+    (call edu.stanford.nlp.sempre.overnight.SimpleWorld.listValue (call edu.stanford.nlp.sempre.overnight.SimpleWorld.filter (call edu.stanford.nlp.sempre.overnight.SimpleWorld.filter (call edu.stanford.nlp.sempre.overnight.SimpleWorld.getProperty (call edu.stanford.nlp.sempre.overnight.SimpleWorld.singleton en.recipe) (string !type)) (string meal) (string =) en.meal.lunch) (string requires) (string =) en.ingredient.milk))
+
+  )
+)
+(example
+  (utterance "Welches Rezept wurde als letztes gepostet")
+  (original "recipe that has the largest posting date")
+  (targetFormula 
+    (call edu.stanford.nlp.sempre.overnight.SimpleWorld.listValue (call edu.stanford.nlp.sempre.overnight.SimpleWorld.superlative (call edu.stanford.nlp.sempre.overnight.SimpleWorld.getProperty (call edu.stanford.nlp.sempre.overnight.SimpleWorld.singleton en.recipe) (string !type)) (string max) (call edu.stanford.nlp.sempre.overnight.SimpleWorld.ensureNumericProperty (string posting_date))))
+
+  )
+)
+(example
+  (utterance "Was ist die Gaszeit von Milchreis")
+  (original "cooking time of rice pudding")
+  (targetFormula 
+    (call edu.stanford.nlp.sempre.overnight.SimpleWorld.listValue (call edu.stanford.nlp.sempre.overnight.SimpleWorld.getProperty en.recipe.rice_pudding (string cooking_time)))
+
+  )
+)
+(example
+  (utterance "Welches Rezept hat die kürzeste Zubereitungszeit")
+  (original "recipe that has the smallest preparation time")
+  (targetFormula 
+    (call edu.stanford.nlp.sempre.overnight.SimpleWorld.listValue (call edu.stanford.nlp.sempre.overnight.SimpleWorld.superlative (call edu.stanford.nlp.sempre.overnight.SimpleWorld.getProperty (call edu.stanford.nlp.sempre.overnight.SimpleWorld.singleton en.recipe) (string !type)) (string min) (call edu.stanford.nlp.sempre.overnight.SimpleWorld.ensureNumericProperty (string preparation_time))))
+
+  )
+)
+(example
+  (utterance "Welche Zutaten braucht man für Reispudding")
+  (original "ingredient that rice pudding requires")
+  (targetFormula 
+    (call edu.stanford.nlp.sempre.overnight.SimpleWorld.listValue (call edu.stanford.nlp.sempre.overnight.SimpleWorld.filter (call edu.stanford.nlp.sempre.overnight.SimpleWorld.getProperty (call edu.stanford.nlp.sempre.overnight.SimpleWorld.singleton en.ingredient) (string !type)) (call edu.stanford.nlp.sempre.overnight.SimpleWorld.reverse (string requires)) (string =) en.recipe.rice_pudding))
+
+  )
+)
+(example
+  (utterance "Welches Rezept wurde früher als das Milchreis Rezept veröffentlicht")
+  (original "recipe whose posting date is smaller than posting date of rice pudding")
+  (targetFormula 
+    (call edu.stanford.nlp.sempre.overnight.SimpleWorld.listValue (call edu.stanford.nlp.sempre.overnight.SimpleWorld.filter (call edu.stanford.nlp.sempre.overnight.SimpleWorld.getProperty (call edu.stanford.nlp.sempre.overnight.SimpleWorld.singleton en.recipe) (string !type)) (call edu.stanford.nlp.sempre.overnight.SimpleWorld.ensureNumericProperty (string posting_date)) (string <) (call edu.stanford.nlp.sempre.overnight.SimpleWorld.ensureNumericEntity (call edu.stanford.nlp.sempre.overnight.SimpleWorld.getProperty en.recipe.rice_pudding (string posting_date)))))
+
+  )
+)
+(example
+  (utterance "Welches Rezept ist für weniger als zwei Gerichte geeignet")
+  (original "recipe that is for less than two meal")
+  (targetFormula 
+    (call edu.stanford.nlp.sempre.overnight.SimpleWorld.listValue (call edu.stanford.nlp.sempre.overnight.SimpleWorld.countComparative (call edu.stanford.nlp.sempre.overnight.SimpleWorld.getProperty (call edu.stanford.nlp.sempre.overnight.SimpleWorld.singleton en.recipe) (string !type)) (string meal) (string <) (number 2) (call edu.stanford.nlp.sempre.overnight.SimpleWorld.getProperty (call edu.stanford.nlp.sempre.overnight.SimpleWorld.singleton en.meal) (string !type))))
+
+  )
+)
+(example
+  (utterance "Welches Rezept wurde im Jahr 2004 veröffentlicht und benötigt Milch")
+  (original "recipe whose posting date is 2004 and that requires milk")
+  (targetFormula 
+    (call edu.stanford.nlp.sempre.overnight.SimpleWorld.listValue (call edu.stanford.nlp.sempre.overnight.SimpleWorld.filter (call edu.stanford.nlp.sempre.overnight.SimpleWorld.filter (call edu.stanford.nlp.sempre.overnight.SimpleWorld.getProperty (call edu.stanford.nlp.sempre.overnight.SimpleWorld.singleton en.recipe) (string !type)) (string posting_date) (string =) (date 2004 -1 -1)) (string requires) (string =) en.ingredient.milk))
+
+  )
+)
+(example
+  (utterance "Welches Rezept wurde vor oder gleichzeitig mit dem Reispuddingrezept gepostet")
+  (original "recipe whose posting date is at most posting date of rice pudding")
+  (targetFormula 
+    (call edu.stanford.nlp.sempre.overnight.SimpleWorld.listValue (call edu.stanford.nlp.sempre.overnight.SimpleWorld.filter (call edu.stanford.nlp.sempre.overnight.SimpleWorld.getProperty (call edu.stanford.nlp.sempre.overnight.SimpleWorld.singleton en.recipe) (string !type)) (call edu.stanford.nlp.sempre.overnight.SimpleWorld.ensureNumericProperty (string posting_date)) (string <=) (call edu.stanford.nlp.sempre.overnight.SimpleWorld.ensureNumericEntity (call edu.stanford.nlp.sempre.overnight.SimpleWorld.getProperty en.recipe.rice_pudding (string posting_date)))))
+
+  )
+)
+(example
+  (utterance "Welche Zutat benötigen wir für das Rezept zum Mittagessen")
+  (original "ingredient that recipe that is for lunch requires")
+  (targetFormula 
+    (call edu.stanford.nlp.sempre.overnight.SimpleWorld.listValue (call edu.stanford.nlp.sempre.overnight.SimpleWorld.filter (call edu.stanford.nlp.sempre.overnight.SimpleWorld.getProperty (call edu.stanford.nlp.sempre.overnight.SimpleWorld.singleton en.ingredient) (string !type)) (call edu.stanford.nlp.sempre.overnight.SimpleWorld.reverse (string requires)) (string =) (call edu.stanford.nlp.sempre.overnight.SimpleWorld.filter (call edu.stanford.nlp.sempre.overnight.SimpleWorld.getProperty (call edu.stanford.nlp.sempre.overnight.SimpleWorld.singleton en.recipe) (string !type)) (string meal) (string =) en.meal.lunch)))
+
+  )
+)
+(example
+  (utterance "Für welches Essen ist das Rezept das Milch erfordert")
+  (original "meal that recipe that requires milk is for")
+  (targetFormula 
+    (call edu.stanford.nlp.sempre.overnight.SimpleWorld.listValue (call edu.stanford.nlp.sempre.overnight.SimpleWorld.filter (call edu.stanford.nlp.sempre.overnight.SimpleWorld.getProperty (call edu.stanford.nlp.sempre.overnight.SimpleWorld.singleton en.meal) (string !type)) (call edu.stanford.nlp.sempre.overnight.SimpleWorld.reverse (string meal)) (string =) (call edu.stanford.nlp.sempre.overnight.SimpleWorld.filter (call edu.stanford.nlp.sempre.overnight.SimpleWorld.getProperty (call edu.stanford.nlp.sempre.overnight.SimpleWorld.singleton en.recipe) (string !type)) (string requires) (string =) en.ingredient.milk)))
+
+  )
+)
+(example
+  (utterance "Welche Zutat wird in weniger als zwei Rezepte benutzt")
+  (original "ingredient that less than two recipe requires")
+  (targetFormula 
+    (call edu.stanford.nlp.sempre.overnight.SimpleWorld.listValue (call edu.stanford.nlp.sempre.overnight.SimpleWorld.countComparative (call edu.stanford.nlp.sempre.overnight.SimpleWorld.getProperty (call edu.stanford.nlp.sempre.overnight.SimpleWorld.singleton en.ingredient) (string !type)) (call edu.stanford.nlp.sempre.overnight.SimpleWorld.reverse (string requires)) (string <) (number 2) (call edu.stanford.nlp.sempre.overnight.SimpleWorld.getProperty (call edu.stanford.nlp.sempre.overnight.SimpleWorld.singleton en.recipe) (string !type))))
+
+  )
+)
+(example
+  (utterance "Welche Rezepte sind sowohl fürs Mittagessen als auch fürs Abendbrot geeignet")
+  (original "recipe that is for lunch or dinner")
+  (targetFormula 
+    (call edu.stanford.nlp.sempre.overnight.SimpleWorld.listValue (call edu.stanford.nlp.sempre.overnight.SimpleWorld.filter (call edu.stanford.nlp.sempre.overnight.SimpleWorld.getProperty (call edu.stanford.nlp.sempre.overnight.SimpleWorld.singleton en.recipe) (string !type)) (string meal) (string =) (call edu.stanford.nlp.sempre.overnight.SimpleWorld.concat en.meal.lunch en.meal.dinner)))
+
+  )
+)
+(example
+  (utterance "Eine Zutat die für die wenigsten Rezepte benötigt wird")
+  (original "ingredient that the least number of recipe requires")
+  (targetFormula 
+    (call edu.stanford.nlp.sempre.overnight.SimpleWorld.listValue (call edu.stanford.nlp.sempre.overnight.SimpleWorld.countSuperlative (call edu.stanford.nlp.sempre.overnight.SimpleWorld.getProperty (call edu.stanford.nlp.sempre.overnight.SimpleWorld.singleton en.ingredient) (string !type)) (string min) (call edu.stanford.nlp.sempre.overnight.SimpleWorld.reverse (string requires)) (call edu.stanford.nlp.sempre.overnight.SimpleWorld.getProperty (call edu.stanford.nlp.sempre.overnight.SimpleWorld.singleton en.recipe) (string !type))))
+
+  )
+)
+(example
+  (utterance "Gibt es ein Rezept dessen Vorbereitungszeit kürzer ist als die Vorbereitungszeit von Reispudding")
+  (original "recipe whose preparation time is smaller than preparation time of rice pudding")
+  (targetFormula 
+    (call edu.stanford.nlp.sempre.overnight.SimpleWorld.listValue (call edu.stanford.nlp.sempre.overnight.SimpleWorld.filter (call edu.stanford.nlp.sempre.overnight.SimpleWorld.getProperty (call edu.stanford.nlp.sempre.overnight.SimpleWorld.singleton en.recipe) (string !type)) (call edu.stanford.nlp.sempre.overnight.SimpleWorld.ensureNumericProperty (string preparation_time)) (string <) (call edu.stanford.nlp.sempre.overnight.SimpleWorld.ensureNumericEntity (call edu.stanford.nlp.sempre.overnight.SimpleWorld.getProperty en.recipe.rice_pudding (string preparation_time)))))
+
+  )
+)
+(example
+  (utterance "Ein Rezept dass 2004 veröffentlicht wurde")
+  (original "recipe whose posting date is 2004 and whose posting date is 2004")
+  (targetFormula 
+    (call edu.stanford.nlp.sempre.overnight.SimpleWorld.listValue (call edu.stanford.nlp.sempre.overnight.SimpleWorld.filter (call edu.stanford.nlp.sempre.overnight.SimpleWorld.filter (call edu.stanford.nlp.sempre.overnight.SimpleWorld.getProperty (call edu.stanford.nlp.sempre.overnight.SimpleWorld.singleton en.recipe) (string !type)) (string posting_date) (string =) (date 2004 -1 -1)) (string posting_date) (string =) (date 2004 -1 -1)))
+
+  )
+)
+(example
+  (utterance "Welche Rezepte sind für zwei Personen")
+  (original "recipe that is for at most two meal")
+  (targetFormula 
+    (call edu.stanford.nlp.sempre.overnight.SimpleWorld.listValue (call edu.stanford.nlp.sempre.overnight.SimpleWorld.countComparative (call edu.stanford.nlp.sempre.overnight.SimpleWorld.getProperty (call edu.stanford.nlp.sempre.overnight.SimpleWorld.singleton en.recipe) (string !type)) (string meal) (string <=) (number 2) (call edu.stanford.nlp.sempre.overnight.SimpleWorld.getProperty (call edu.stanford.nlp.sempre.overnight.SimpleWorld.singleton en.meal) (string !type))))
+
+  )
+)
+(example
+  (utterance "Ich suche ein Rezept das ähnlich wie Milchreis ist ")
+  (original "recipe whose cuisine is cuisine of rice pudding")
+  (targetFormula 
+    (call edu.stanford.nlp.sempre.overnight.SimpleWorld.listValue (call edu.stanford.nlp.sempre.overnight.SimpleWorld.filter (call edu.stanford.nlp.sempre.overnight.SimpleWorld.getProperty (call edu.stanford.nlp.sempre.overnight.SimpleWorld.singleton en.recipe) (string !type)) (string cuisine) (string =) (call edu.stanford.nlp.sempre.overnight.SimpleWorld.getProperty en.recipe.rice_pudding (string cuisine))))
+
+  )
+)
+(example
+  (utterance "Für das Rezept von welcher Speise braucht man Milch")
+  (original "meal that recipe that requires milk is for")
+  (targetFormula 
+    (call edu.stanford.nlp.sempre.overnight.SimpleWorld.listValue (call edu.stanford.nlp.sempre.overnight.SimpleWorld.filter (call edu.stanford.nlp.sempre.overnight.SimpleWorld.getProperty (call edu.stanford.nlp.sempre.overnight.SimpleWorld.singleton en.meal) (string !type)) (call edu.stanford.nlp.sempre.overnight.SimpleWorld.reverse (string meal)) (string =) (call edu.stanford.nlp.sempre.overnight.SimpleWorld.filter (call edu.stanford.nlp.sempre.overnight.SimpleWorld.getProperty (call edu.stanford.nlp.sempre.overnight.SimpleWorld.singleton en.recipe) (string !type)) (string requires) (string =) en.ingredient.milk)))
+
+  )
+)
+(example
+  (utterance "Kennst du ein Rezept was weniger als zwei Zutaten benötigt")
+  (original "ingredient that less than two recipe requires")
+  (targetFormula 
+    (call edu.stanford.nlp.sempre.overnight.SimpleWorld.listValue (call edu.stanford.nlp.sempre.overnight.SimpleWorld.countComparative (call edu.stanford.nlp.sempre.overnight.SimpleWorld.getProperty (call edu.stanford.nlp.sempre.overnight.SimpleWorld.singleton en.ingredient) (string !type)) (call edu.stanford.nlp.sempre.overnight.SimpleWorld.reverse (string requires)) (string <) (number 2) (call edu.stanford.nlp.sempre.overnight.SimpleWorld.getProperty (call edu.stanford.nlp.sempre.overnight.SimpleWorld.singleton en.recipe) (string !type))))
+
+  )
+)
+(example
+  (utterance "Welches Rezept hat mindestens die selbe Kochzeit wie die Zubereitungszeit von Milchreis")
+  (original "recipe whose cooking time is at least preparation time of rice pudding")
+  (targetFormula 
+    (call edu.stanford.nlp.sempre.overnight.SimpleWorld.listValue (call edu.stanford.nlp.sempre.overnight.SimpleWorld.filter (call edu.stanford.nlp.sempre.overnight.SimpleWorld.getProperty (call edu.stanford.nlp.sempre.overnight.SimpleWorld.singleton en.recipe) (string !type)) (call edu.stanford.nlp.sempre.overnight.SimpleWorld.ensureNumericProperty (string cooking_time)) (string >=) (call edu.stanford.nlp.sempre.overnight.SimpleWorld.ensureNumericEntity (call edu.stanford.nlp.sempre.overnight.SimpleWorld.getProperty en.recipe.rice_pudding (string preparation_time)))))
+
+  )
+)
+(example
+  (utterance "Welches Rezept hat die gleiche Zubereitungszeit wie Reispudding")
+  (original "recipe whose cooking time is preparation time of rice pudding")
+  (targetFormula 
+    (call edu.stanford.nlp.sempre.overnight.SimpleWorld.listValue (call edu.stanford.nlp.sempre.overnight.SimpleWorld.filter (call edu.stanford.nlp.sempre.overnight.SimpleWorld.getProperty (call edu.stanford.nlp.sempre.overnight.SimpleWorld.singleton en.recipe) (string !type)) (string cooking_time) (string =) (call edu.stanford.nlp.sempre.overnight.SimpleWorld.getProperty en.recipe.rice_pudding (string preparation_time))))
+
+  )
+)
+(example
+  (utterance "Welche Zutat wird in höchstens zwei Rezepten benötigt")
+  (original "ingredient that at most two recipe requires")
+  (targetFormula 
+    (call edu.stanford.nlp.sempre.overnight.SimpleWorld.listValue (call edu.stanford.nlp.sempre.overnight.SimpleWorld.countComparative (call edu.stanford.nlp.sempre.overnight.SimpleWorld.getProperty (call edu.stanford.nlp.sempre.overnight.SimpleWorld.singleton en.ingredient) (string !type)) (call edu.stanford.nlp.sempre.overnight.SimpleWorld.reverse (string requires)) (string <=) (number 2) (call edu.stanford.nlp.sempre.overnight.SimpleWorld.getProperty (call edu.stanford.nlp.sempre.overnight.SimpleWorld.singleton en.recipe) (string !type))))
+
+  )
+)
+(example
+  (utterance "Welche Rezepte reichen für zwei Mahlzeiten")
+  (original "recipe that is for two meal")
+  (targetFormula 
+    (call edu.stanford.nlp.sempre.overnight.SimpleWorld.listValue (call edu.stanford.nlp.sempre.overnight.SimpleWorld.countComparative (call edu.stanford.nlp.sempre.overnight.SimpleWorld.getProperty (call edu.stanford.nlp.sempre.overnight.SimpleWorld.singleton en.recipe) (string !type)) (string meal) (string =) (number 2) (call edu.stanford.nlp.sempre.overnight.SimpleWorld.getProperty (call edu.stanford.nlp.sempre.overnight.SimpleWorld.singleton en.meal) (string !type))))
+
+  )
+)
+(example
+  (utterance "Welche Mahlzeit hat weniger als zwei Rezepte")
+  (original "meal that less than two recipe is for")
+  (targetFormula 
+    (call edu.stanford.nlp.sempre.overnight.SimpleWorld.listValue (call edu.stanford.nlp.sempre.overnight.SimpleWorld.countComparative (call edu.stanford.nlp.sempre.overnight.SimpleWorld.getProperty (call edu.stanford.nlp.sempre.overnight.SimpleWorld.singleton en.meal) (string !type)) (call edu.stanford.nlp.sempre.overnight.SimpleWorld.reverse (string meal)) (string <) (number 2) (call edu.stanford.nlp.sempre.overnight.SimpleWorld.getProperty (call edu.stanford.nlp.sempre.overnight.SimpleWorld.singleton en.recipe) (string !type))))
+
+  )
+)
+(example
+  (utterance "Aus welcher Küche stammt Reispudding")
+  (original "cuisine of rice pudding")
+  (targetFormula 
+    (call edu.stanford.nlp.sempre.overnight.SimpleWorld.listValue (call edu.stanford.nlp.sempre.overnight.SimpleWorld.getProperty en.recipe.rice_pudding (string cuisine)))
+
+  )
+)
+(example
+  (utterance "Welche Zutat braucht man für weniger als zwei Rezepte")
+  (original "ingredient that less than two recipe requires")
+  (targetFormula 
+    (call edu.stanford.nlp.sempre.overnight.SimpleWorld.listValue (call edu.stanford.nlp.sempre.overnight.SimpleWorld.countComparative (call edu.stanford.nlp.sempre.overnight.SimpleWorld.getProperty (call edu.stanford.nlp.sempre.overnight.SimpleWorld.singleton en.ingredient) (string !type)) (call edu.stanford.nlp.sempre.overnight.SimpleWorld.reverse (string requires)) (string <) (number 2) (call edu.stanford.nlp.sempre.overnight.SimpleWorld.getProperty (call edu.stanford.nlp.sempre.overnight.SimpleWorld.singleton en.recipe) (string !type))))
+
+  )
+)
+(example
+  (utterance "Welches Rezept hat dasselbe Einlieferungsdatum wie Milchreis")
+  (original "recipe whose posting date is at most posting date of rice pudding")
+  (targetFormula 
+    (call edu.stanford.nlp.sempre.overnight.SimpleWorld.listValue (call edu.stanford.nlp.sempre.overnight.SimpleWorld.filter (call edu.stanford.nlp.sempre.overnight.SimpleWorld.getProperty (call edu.stanford.nlp.sempre.overnight.SimpleWorld.singleton en.recipe) (string !type)) (call edu.stanford.nlp.sempre.overnight.SimpleWorld.ensureNumericProperty (string posting_date)) (string <=) (call edu.stanford.nlp.sempre.overnight.SimpleWorld.ensureNumericEntity (call edu.stanford.nlp.sempre.overnight.SimpleWorld.getProperty en.recipe.rice_pudding (string posting_date)))))
+
+  )
+)
+(example
+  (utterance "Welches Rezept kocht nicht länger als die Kochzeit von Milchreis")
+  (original "recipe whose cooking time is at most cooking time of rice pudding")
+  (targetFormula 
+    (call edu.stanford.nlp.sempre.overnight.SimpleWorld.listValue (call edu.stanford.nlp.sempre.overnight.SimpleWorld.filter (call edu.stanford.nlp.sempre.overnight.SimpleWorld.getProperty (call edu.stanford.nlp.sempre.overnight.SimpleWorld.singleton en.recipe) (string !type)) (call edu.stanford.nlp.sempre.overnight.SimpleWorld.ensureNumericProperty (string cooking_time)) (string <=) (call edu.stanford.nlp.sempre.overnight.SimpleWorld.ensureNumericEntity (call edu.stanford.nlp.sempre.overnight.SimpleWorld.getProperty en.recipe.rice_pudding (string cooking_time)))))
+
+  )
+)
+(example
+  (utterance "Welche Rezepte benötigen mindestens zwei Zutaten")
+  (original "recipe that requires at most two ingredient")
+  (targetFormula 
+    (call edu.stanford.nlp.sempre.overnight.SimpleWorld.listValue (call edu.stanford.nlp.sempre.overnight.SimpleWorld.countComparative (call edu.stanford.nlp.sempre.overnight.SimpleWorld.getProperty (call edu.stanford.nlp.sempre.overnight.SimpleWorld.singleton en.recipe) (string !type)) (string requires) (string <=) (number 2) (call edu.stanford.nlp.sempre.overnight.SimpleWorld.getProperty (call edu.stanford.nlp.sempre.overnight.SimpleWorld.singleton en.ingredient) (string !type))))
+
+  )
+)
+(example
+  (utterance "Wie lange dauert Reispuddungzubereitung")
+  (original "preparation time of rice pudding")
+  (targetFormula 
+    (call edu.stanford.nlp.sempre.overnight.SimpleWorld.listValue (call edu.stanford.nlp.sempre.overnight.SimpleWorld.getProperty en.recipe.rice_pudding (string preparation_time)))
+
+  )
+)
+(example
+  (utterance "Welche Mahlzeit hat mindestens zwei Rezepte")
+  (original "meal that at least two recipe is for")
+  (targetFormula 
+    (call edu.stanford.nlp.sempre.overnight.SimpleWorld.listValue (call edu.stanford.nlp.sempre.overnight.SimpleWorld.countComparative (call edu.stanford.nlp.sempre.overnight.SimpleWorld.getProperty (call edu.stanford.nlp.sempre.overnight.SimpleWorld.singleton en.meal) (string !type)) (call edu.stanford.nlp.sempre.overnight.SimpleWorld.reverse (string meal)) (string >=) (number 2) (call edu.stanford.nlp.sempre.overnight.SimpleWorld.getProperty (call edu.stanford.nlp.sempre.overnight.SimpleWorld.singleton en.recipe) (string !type))))
+
+  )
+)
+(example
+  (utterance "Milch oder Spinat")
+  (original "milk or spinach")
+  (targetFormula 
+    (call edu.stanford.nlp.sempre.overnight.SimpleWorld.listValue (call edu.stanford.nlp.sempre.overnight.SimpleWorld.concat en.ingredient.milk en.ingredient.spinach))
+
+  )
+)
+(example
+  (utterance "Welche Zutaten braucht man für Reispudding")
+  (original "ingredient that rice pudding requires")
+  (targetFormula 
+    (call edu.stanford.nlp.sempre.overnight.SimpleWorld.listValue (call edu.stanford.nlp.sempre.overnight.SimpleWorld.filter (call edu.stanford.nlp.sempre.overnight.SimpleWorld.getProperty (call edu.stanford.nlp.sempre.overnight.SimpleWorld.singleton en.ingredient) (string !type)) (call edu.stanford.nlp.sempre.overnight.SimpleWorld.reverse (string requires)) (string =) en.recipe.rice_pudding))
+
+  )
+)
+(example
+  (utterance "Für welche Mahlzeit kann ich beide Rezepte verwenden")
+  (original "meal that at least two recipe is for")
+  (targetFormula 
+    (call edu.stanford.nlp.sempre.overnight.SimpleWorld.listValue (call edu.stanford.nlp.sempre.overnight.SimpleWorld.countComparative (call edu.stanford.nlp.sempre.overnight.SimpleWorld.getProperty (call edu.stanford.nlp.sempre.overnight.SimpleWorld.singleton en.meal) (string !type)) (call edu.stanford.nlp.sempre.overnight.SimpleWorld.reverse (string meal)) (string >=) (number 2) (call edu.stanford.nlp.sempre.overnight.SimpleWorld.getProperty (call edu.stanford.nlp.sempre.overnight.SimpleWorld.singleton en.recipe) (string !type))))
+
+  )
+)
+(example
+  (utterance "Welches Rezept braucht weniger als zwei Zutaten")
+  (original "recipe that requires less than two ingredient")
+  (targetFormula 
+    (call edu.stanford.nlp.sempre.overnight.SimpleWorld.listValue (call edu.stanford.nlp.sempre.overnight.SimpleWorld.countComparative (call edu.stanford.nlp.sempre.overnight.SimpleWorld.getProperty (call edu.stanford.nlp.sempre.overnight.SimpleWorld.singleton en.recipe) (string !type)) (string requires) (string <) (number 2) (call edu.stanford.nlp.sempre.overnight.SimpleWorld.getProperty (call edu.stanford.nlp.sempre.overnight.SimpleWorld.singleton en.ingredient) (string !type))))
+
+  )
+)
+(example
+  (utterance "Ist das ähnlich wie Milchreis")
+  (original "cuisine of rice pudding")
+  (targetFormula 
+    (call edu.stanford.nlp.sempre.overnight.SimpleWorld.listValue (call edu.stanford.nlp.sempre.overnight.SimpleWorld.getProperty en.recipe.rice_pudding (string cuisine)))
+
+  )
+)
+(example
+  (utterance "Ein Rezept das zwischen 2004 und 2010 gepostet wurde")
+  (original "recipe whose posting date is at most 2004 or 2010")
+  (targetFormula 
+    (call edu.stanford.nlp.sempre.overnight.SimpleWorld.listValue (call edu.stanford.nlp.sempre.overnight.SimpleWorld.filter (call edu.stanford.nlp.sempre.overnight.SimpleWorld.getProperty (call edu.stanford.nlp.sempre.overnight.SimpleWorld.singleton en.recipe) (string !type)) (call edu.stanford.nlp.sempre.overnight.SimpleWorld.ensureNumericProperty (string posting_date)) (string <=) (call edu.stanford.nlp.sempre.overnight.SimpleWorld.ensureNumericEntity (call edu.stanford.nlp.sempre.overnight.SimpleWorld.concat (date 2004 -1 -1) (date 2010 -1 -1)))))
+
+  )
+)
+(example
+  (utterance "Wird Milchreis für diese Mahlzeit benötigt")
+  (original "meal that rice pudding is for and that rice pudding is for")
+  (targetFormula 
+    (call edu.stanford.nlp.sempre.overnight.SimpleWorld.listValue (call edu.stanford.nlp.sempre.overnight.SimpleWorld.filter (call edu.stanford.nlp.sempre.overnight.SimpleWorld.filter (call edu.stanford.nlp.sempre.overnight.SimpleWorld.getProperty (call edu.stanford.nlp.sempre.overnight.SimpleWorld.singleton en.meal) (string !type)) (call edu.stanford.nlp.sempre.overnight.SimpleWorld.reverse (string meal)) (string =) en.recipe.rice_pudding) (call edu.stanford.nlp.sempre.overnight.SimpleWorld.reverse (string meal)) (string =) en.recipe.rice_pudding))
+
+  )
+)
+(example
+  (utterance "Für welche Mahlzeit gibt es mehr als zwei Rezepte")
+  (original "meal that more than two recipe is for")
+  (targetFormula 
+    (call edu.stanford.nlp.sempre.overnight.SimpleWorld.listValue (call edu.stanford.nlp.sempre.overnight.SimpleWorld.countComparative (call edu.stanford.nlp.sempre.overnight.SimpleWorld.getProperty (call edu.stanford.nlp.sempre.overnight.SimpleWorld.singleton en.meal) (string !type)) (call edu.stanford.nlp.sempre.overnight.SimpleWorld.reverse (string meal)) (string >) (number 2) (call edu.stanford.nlp.sempre.overnight.SimpleWorld.getProperty (call edu.stanford.nlp.sempre.overnight.SimpleWorld.singleton en.recipe) (string !type))))
+
+  )
+)
+(example
+  (utterance "Welche Rezepte mit Milch passen zum Mittagessen")
+  (original "recipe that is for lunch and that requires milk")
+  (targetFormula 
+    (call edu.stanford.nlp.sempre.overnight.SimpleWorld.listValue (call edu.stanford.nlp.sempre.overnight.SimpleWorld.filter (call edu.stanford.nlp.sempre.overnight.SimpleWorld.filter (call edu.stanford.nlp.sempre.overnight.SimpleWorld.getProperty (call edu.stanford.nlp.sempre.overnight.SimpleWorld.singleton en.recipe) (string !type)) (string meal) (string =) en.meal.lunch) (string requires) (string =) en.ingredient.milk))
+
+  )
+)
+(example
+  (utterance "Welche Zutat ist nicht in Reispudding enthalten")
+  (original "ingredient that rice pudding not requires")
+  (targetFormula 
+    (call edu.stanford.nlp.sempre.overnight.SimpleWorld.listValue (call edu.stanford.nlp.sempre.overnight.SimpleWorld.filter (call edu.stanford.nlp.sempre.overnight.SimpleWorld.getProperty (call edu.stanford.nlp.sempre.overnight.SimpleWorld.singleton en.ingredient) (string !type)) (call edu.stanford.nlp.sempre.overnight.SimpleWorld.reverse (string requires)) (string !=) en.recipe.rice_pudding))
+
+  )
+)
+(example
+  (utterance "Wann wurde der Reispudding veröffentlicht")
+  (original "posting date of rice pudding")
+  (targetFormula 
+    (call edu.stanford.nlp.sempre.overnight.SimpleWorld.listValue (call edu.stanford.nlp.sempre.overnight.SimpleWorld.getProperty en.recipe.rice_pudding (string posting_date)))
+
+  )
+)
+(example
+  (utterance "Ist das Rezept für's Mittagessen geeignet")
+  (original "recipe that is for lunch")
+  (targetFormula 
+    (call edu.stanford.nlp.sempre.overnight.SimpleWorld.listValue (call edu.stanford.nlp.sempre.overnight.SimpleWorld.filter (call edu.stanford.nlp.sempre.overnight.SimpleWorld.getProperty (call edu.stanford.nlp.sempre.overnight.SimpleWorld.singleton en.recipe) (string !type)) (string meal) (string =) en.meal.lunch))
+
+  )
+)
+(example
+  (utterance "Das Datum der  Veröffentlichung von Reispudding")
+  (original "posting date of rice pudding")
+  (targetFormula 
+    (call edu.stanford.nlp.sempre.overnight.SimpleWorld.listValue (call edu.stanford.nlp.sempre.overnight.SimpleWorld.getProperty en.recipe.rice_pudding (string posting_date)))
+
+  )
+)
+(example
+  (utterance "Welches Gericht beinhaltet Reispudding")
+  (original "meal that rice pudding is for and that rice pudding is for")
+  (targetFormula 
+    (call edu.stanford.nlp.sempre.overnight.SimpleWorld.listValue (call edu.stanford.nlp.sempre.overnight.SimpleWorld.filter (call edu.stanford.nlp.sempre.overnight.SimpleWorld.filter (call edu.stanford.nlp.sempre.overnight.SimpleWorld.getProperty (call edu.stanford.nlp.sempre.overnight.SimpleWorld.singleton en.meal) (string !type)) (call edu.stanford.nlp.sempre.overnight.SimpleWorld.reverse (string meal)) (string =) en.recipe.rice_pudding) (call edu.stanford.nlp.sempre.overnight.SimpleWorld.reverse (string meal)) (string =) en.recipe.rice_pudding))
+
+  )
+)
+(example
+  (utterance "Welches Rezept ist für mehr als zwei Gerichte")
+  (original "recipe that has more than two cuisine")
+  (targetFormula 
+    (call edu.stanford.nlp.sempre.overnight.SimpleWorld.listValue (call edu.stanford.nlp.sempre.overnight.SimpleWorld.countComparative (call edu.stanford.nlp.sempre.overnight.SimpleWorld.getProperty (call edu.stanford.nlp.sempre.overnight.SimpleWorld.singleton en.recipe) (string !type)) (string cuisine) (string >) (number 2)))
+
+  )
+)
+(example
+  (utterance "Welches Rezept benötigt mehr als zwei Zutaten")
+  (original "ingredient that more than two recipe requires")
+  (targetFormula 
+    (call edu.stanford.nlp.sempre.overnight.SimpleWorld.listValue (call edu.stanford.nlp.sempre.overnight.SimpleWorld.countComparative (call edu.stanford.nlp.sempre.overnight.SimpleWorld.getProperty (call edu.stanford.nlp.sempre.overnight.SimpleWorld.singleton en.ingredient) (string !type)) (call edu.stanford.nlp.sempre.overnight.SimpleWorld.reverse (string requires)) (string >) (number 2) (call edu.stanford.nlp.sempre.overnight.SimpleWorld.getProperty (call edu.stanford.nlp.sempre.overnight.SimpleWorld.singleton en.recipe) (string !type))))
+
+  )
+)
+(example
+  (utterance "Kennst du ein Rezept für Milchreis welches sehr neu ist")
+  (original "recipe whose posting date is at most posting date of rice pudding")
+  (targetFormula 
+    (call edu.stanford.nlp.sempre.overnight.SimpleWorld.listValue (call edu.stanford.nlp.sempre.overnight.SimpleWorld.filter (call edu.stanford.nlp.sempre.overnight.SimpleWorld.getProperty (call edu.stanford.nlp.sempre.overnight.SimpleWorld.singleton en.recipe) (string !type)) (call edu.stanford.nlp.sempre.overnight.SimpleWorld.ensureNumericProperty (string posting_date)) (string <=) (call edu.stanford.nlp.sempre.overnight.SimpleWorld.ensureNumericEntity (call edu.stanford.nlp.sempre.overnight.SimpleWorld.getProperty en.recipe.rice_pudding (string posting_date)))))
+
+  )
+)
+(example
+  (utterance "Welches Rezept wurde 2004 eingereicht und benötigt Milch")
+  (original "recipe whose posting date is 2004 and that requires milk")
+  (targetFormula 
+    (call edu.stanford.nlp.sempre.overnight.SimpleWorld.listValue (call edu.stanford.nlp.sempre.overnight.SimpleWorld.filter (call edu.stanford.nlp.sempre.overnight.SimpleWorld.filter (call edu.stanford.nlp.sempre.overnight.SimpleWorld.getProperty (call edu.stanford.nlp.sempre.overnight.SimpleWorld.singleton en.recipe) (string !type)) (string posting_date) (string =) (date 2004 -1 -1)) (string requires) (string =) en.ingredient.milk))
+
+  )
+)
+(example
+  (utterance "Welches Rezept wurde spätestens mit dem Reispudding veröffentlicht")
+  (original "recipe whose posting date is at least posting date of rice pudding")
+  (targetFormula 
+    (call edu.stanford.nlp.sempre.overnight.SimpleWorld.listValue (call edu.stanford.nlp.sempre.overnight.SimpleWorld.filter (call edu.stanford.nlp.sempre.overnight.SimpleWorld.getProperty (call edu.stanford.nlp.sempre.overnight.SimpleWorld.singleton en.recipe) (string !type)) (call edu.stanford.nlp.sempre.overnight.SimpleWorld.ensureNumericProperty (string posting_date)) (string >=) (call edu.stanford.nlp.sempre.overnight.SimpleWorld.ensureNumericEntity (call edu.stanford.nlp.sempre.overnight.SimpleWorld.getProperty en.recipe.rice_pudding (string posting_date)))))
+
+  )
+)
+(example
+  (utterance "Welches Rezept benötigt dieselben Zutaten wie Milchreis")
+  (original "recipe that requires ingredient that rice pudding requires")
+  (targetFormula 
+    (call edu.stanford.nlp.sempre.overnight.SimpleWorld.listValue (call edu.stanford.nlp.sempre.overnight.SimpleWorld.filter (call edu.stanford.nlp.sempre.overnight.SimpleWorld.getProperty (call edu.stanford.nlp.sempre.overnight.SimpleWorld.singleton en.recipe) (string !type)) (string requires) (string =) (call edu.stanford.nlp.sempre.overnight.SimpleWorld.filter (call edu.stanford.nlp.sempre.overnight.SimpleWorld.getProperty (call edu.stanford.nlp.sempre.overnight.SimpleWorld.singleton en.ingredient) (string !type)) (call edu.stanford.nlp.sempre.overnight.SimpleWorld.reverse (string requires)) (string =) en.recipe.rice_pudding)))
+
+  )
+)
+(example
+  (utterance "Welche Zutat wird für die meisten Rezepte benötigt")
+  (original "ingredient that the most number of recipe requires")
+  (targetFormula 
+    (call edu.stanford.nlp.sempre.overnight.SimpleWorld.listValue (call edu.stanford.nlp.sempre.overnight.SimpleWorld.countSuperlative (call edu.stanford.nlp.sempre.overnight.SimpleWorld.getProperty (call edu.stanford.nlp.sempre.overnight.SimpleWorld.singleton en.ingredient) (string !type)) (string max) (call edu.stanford.nlp.sempre.overnight.SimpleWorld.reverse (string requires)) (call edu.stanford.nlp.sempre.overnight.SimpleWorld.getProperty (call edu.stanford.nlp.sempre.overnight.SimpleWorld.singleton en.recipe) (string !type))))
+
+  )
+)
+(example
+  (utterance "Welche Rezepte erfordern mehr als zwei Zutaten")
+  (original "recipe that requires more than two ingredient")
+  (targetFormula 
+    (call edu.stanford.nlp.sempre.overnight.SimpleWorld.listValue (call edu.stanford.nlp.sempre.overnight.SimpleWorld.countComparative (call edu.stanford.nlp.sempre.overnight.SimpleWorld.getProperty (call edu.stanford.nlp.sempre.overnight.SimpleWorld.singleton en.recipe) (string !type)) (string requires) (string >) (number 2) (call edu.stanford.nlp.sempre.overnight.SimpleWorld.getProperty (call edu.stanford.nlp.sempre.overnight.SimpleWorld.singleton en.ingredient) (string !type))))
+
+  )
+)
+(example
+  (utterance "Welches Rezept erfordert die höchste Kochkunst")
+  (original "recipe that has the most number of cuisine")
+  (targetFormula 
+    (call edu.stanford.nlp.sempre.overnight.SimpleWorld.listValue (call edu.stanford.nlp.sempre.overnight.SimpleWorld.countSuperlative (call edu.stanford.nlp.sempre.overnight.SimpleWorld.getProperty (call edu.stanford.nlp.sempre.overnight.SimpleWorld.singleton en.recipe) (string !type)) (string max) (string cuisine)))
+
+  )
+)
+(example
+  (utterance "Welche Rezepte benötigen Milch")
+  (original "recipe that requires milk")
+  (targetFormula 
+    (call edu.stanford.nlp.sempre.overnight.SimpleWorld.listValue (call edu.stanford.nlp.sempre.overnight.SimpleWorld.filter (call edu.stanford.nlp.sempre.overnight.SimpleWorld.getProperty (call edu.stanford.nlp.sempre.overnight.SimpleWorld.singleton en.recipe) (string !type)) (string requires) (string =) en.ingredient.milk))
+
+  )
+)
+(example
+  (utterance "Welche Rezepte kommen aus dem gleichen Land wie Reispudding")
+  (original "recipe whose cuisine is cuisine of rice pudding")
+  (targetFormula 
+    (call edu.stanford.nlp.sempre.overnight.SimpleWorld.listValue (call edu.stanford.nlp.sempre.overnight.SimpleWorld.filter (call edu.stanford.nlp.sempre.overnight.SimpleWorld.getProperty (call edu.stanford.nlp.sempre.overnight.SimpleWorld.singleton en.recipe) (string !type)) (string cuisine) (string =) (call edu.stanford.nlp.sempre.overnight.SimpleWorld.getProperty en.recipe.rice_pudding (string cuisine))))
+
+  )
+)
+(example
+  (utterance "Für welche Mahzeit benötigt man weniger als zwei Rezepte")
+  (original "meal that less than two recipe is for")
+  (targetFormula 
+    (call edu.stanford.nlp.sempre.overnight.SimpleWorld.listValue (call edu.stanford.nlp.sempre.overnight.SimpleWorld.countComparative (call edu.stanford.nlp.sempre.overnight.SimpleWorld.getProperty (call edu.stanford.nlp.sempre.overnight.SimpleWorld.singleton en.meal) (string !type)) (call edu.stanford.nlp.sempre.overnight.SimpleWorld.reverse (string meal)) (string <) (number 2) (call edu.stanford.nlp.sempre.overnight.SimpleWorld.getProperty (call edu.stanford.nlp.sempre.overnight.SimpleWorld.singleton en.recipe) (string !type))))
+
+  )
+)
+(example
+  (utterance "Wann wurde der Reispudding gepostet")
+  (original "posting date of rice pudding")
+  (targetFormula 
+    (call edu.stanford.nlp.sempre.overnight.SimpleWorld.listValue (call edu.stanford.nlp.sempre.overnight.SimpleWorld.getProperty en.recipe.rice_pudding (string posting_date)))
+
+  )
+)
+(example
+  (utterance "Welche Rezepte haben eine längere Zubereitungszeit als die Vorbereitungsdauer von Reispudding")
+  (original "recipe whose cooking time is larger than preparation time of rice pudding")
+  (targetFormula 
+    (call edu.stanford.nlp.sempre.overnight.SimpleWorld.listValue (call edu.stanford.nlp.sempre.overnight.SimpleWorld.filter (call edu.stanford.nlp.sempre.overnight.SimpleWorld.getProperty (call edu.stanford.nlp.sempre.overnight.SimpleWorld.singleton en.recipe) (string !type)) (call edu.stanford.nlp.sempre.overnight.SimpleWorld.ensureNumericProperty (string cooking_time)) (string >) (call edu.stanford.nlp.sempre.overnight.SimpleWorld.ensureNumericEntity (call edu.stanford.nlp.sempre.overnight.SimpleWorld.getProperty en.recipe.rice_pudding (string preparation_time)))))
+
+  )
+)
+(example
+  (utterance "Wie ist die Anzahl der Mahlzeiten")
+  (original "number of meal")
+  (targetFormula 
+    (call edu.stanford.nlp.sempre.overnight.SimpleWorld.listValue (call .size (call edu.stanford.nlp.sempre.overnight.SimpleWorld.getProperty (call edu.stanford.nlp.sempre.overnight.SimpleWorld.singleton en.meal) (string !type))))
+
+  )
+)
+(example
+  (utterance "Welches Rezept passt in mindestens zwei regionale Kategorien")
+  (original "recipe that has at least two cuisine")
+  (targetFormula 
+    (call edu.stanford.nlp.sempre.overnight.SimpleWorld.listValue (call edu.stanford.nlp.sempre.overnight.SimpleWorld.countComparative (call edu.stanford.nlp.sempre.overnight.SimpleWorld.getProperty (call edu.stanford.nlp.sempre.overnight.SimpleWorld.singleton en.recipe) (string !type)) (string cuisine) (string >=) (number 2)))
+
+  )
+)
+(example
+  (utterance "Welche Rezepte wurden spätestens 2004 oder 2010 eingereicht")
+  (original "recipe whose posting date is at most 2004 or 2010")
+  (targetFormula 
+    (call edu.stanford.nlp.sempre.overnight.SimpleWorld.listValue (call edu.stanford.nlp.sempre.overnight.SimpleWorld.filter (call edu.stanford.nlp.sempre.overnight.SimpleWorld.getProperty (call edu.stanford.nlp.sempre.overnight.SimpleWorld.singleton en.recipe) (string !type)) (call edu.stanford.nlp.sempre.overnight.SimpleWorld.ensureNumericProperty (string posting_date)) (string <=) (call edu.stanford.nlp.sempre.overnight.SimpleWorld.ensureNumericEntity (call edu.stanford.nlp.sempre.overnight.SimpleWorld.concat (date 2004 -1 -1) (date 2010 -1 -1)))))
+
+  )
+)
+(example
+  (utterance "Welches Rezept ist für mindestens 2 Mahlzeiten")
+  (original "recipe that is for at least two meal")
+  (targetFormula 
+    (call edu.stanford.nlp.sempre.overnight.SimpleWorld.listValue (call edu.stanford.nlp.sempre.overnight.SimpleWorld.countComparative (call edu.stanford.nlp.sempre.overnight.SimpleWorld.getProperty (call edu.stanford.nlp.sempre.overnight.SimpleWorld.singleton en.recipe) (string !type)) (string meal) (string >=) (number 2) (call edu.stanford.nlp.sempre.overnight.SimpleWorld.getProperty (call edu.stanford.nlp.sempre.overnight.SimpleWorld.singleton en.meal) (string !type))))
+
+  )
+)
+(example
+  (utterance "Zu welcher Küche gehört Reispudding")
+  (original "cuisine of rice pudding")
+  (targetFormula 
+    (call edu.stanford.nlp.sempre.overnight.SimpleWorld.listValue (call edu.stanford.nlp.sempre.overnight.SimpleWorld.getProperty en.recipe.rice_pudding (string cuisine)))
+
+  )
+)
+(example
+  (utterance "Welches Rezept hat eine niedrigere Zubereitungszeit als die von Milchreis")
+  (original "recipe whose preparation time is smaller than preparation time of rice pudding")
+  (targetFormula 
+    (call edu.stanford.nlp.sempre.overnight.SimpleWorld.listValue (call edu.stanford.nlp.sempre.overnight.SimpleWorld.filter (call edu.stanford.nlp.sempre.overnight.SimpleWorld.getProperty (call edu.stanford.nlp.sempre.overnight.SimpleWorld.singleton en.recipe) (string !type)) (call edu.stanford.nlp.sempre.overnight.SimpleWorld.ensureNumericProperty (string preparation_time)) (string <) (call edu.stanford.nlp.sempre.overnight.SimpleWorld.ensureNumericEntity (call edu.stanford.nlp.sempre.overnight.SimpleWorld.getProperty en.recipe.rice_pudding (string preparation_time)))))
+
+  )
+)
+(example
+  (utterance "Welches Rezept dauert laenger ad Milchreis")
+  (original "recipe whose cooking time is larger than cooking time of rice pudding")
+  (targetFormula 
+    (call edu.stanford.nlp.sempre.overnight.SimpleWorld.listValue (call edu.stanford.nlp.sempre.overnight.SimpleWorld.filter (call edu.stanford.nlp.sempre.overnight.SimpleWorld.getProperty (call edu.stanford.nlp.sempre.overnight.SimpleWorld.singleton en.recipe) (string !type)) (call edu.stanford.nlp.sempre.overnight.SimpleWorld.ensureNumericProperty (string cooking_time)) (string >) (call edu.stanford.nlp.sempre.overnight.SimpleWorld.ensureNumericEntity (call edu.stanford.nlp.sempre.overnight.SimpleWorld.getProperty en.recipe.rice_pudding (string cooking_time)))))
+
+  )
+)
+(example
+  (utterance "das Rezept welches 2 besonders köstliche Zutaten hat")
+  (original "recipe that has two cuisine")
+  (targetFormula 
+    (call edu.stanford.nlp.sempre.overnight.SimpleWorld.listValue (call edu.stanford.nlp.sempre.overnight.SimpleWorld.countComparative (call edu.stanford.nlp.sempre.overnight.SimpleWorld.getProperty (call edu.stanford.nlp.sempre.overnight.SimpleWorld.singleton en.recipe) (string !type)) (string cuisine) (string =) (number 2)))
+
+  )
+)
+(example
+  (utterance "Wie lange dauert es Milchreis zu kochen ")
+  (original "preparation time of rice pudding")
+  (targetFormula 
+    (call edu.stanford.nlp.sempre.overnight.SimpleWorld.listValue (call edu.stanford.nlp.sempre.overnight.SimpleWorld.getProperty en.recipe.rice_pudding (string preparation_time)))
+
+  )
+)
