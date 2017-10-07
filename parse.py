@@ -14,9 +14,9 @@ def nl_features(sent,dictionary):
     l = len(tokens)
     for w in tokens:
         dictionary[w.lower()] = True
-    #dictionary["COUNT_CAPS"] = sum(w[0].upper() == w[0] for w in tokens)
+    dictionary["COUNT_CAPS"] = sum(w[0].upper() == w[0] for w in tokens)
 
-generator = SemanticGenerator(NT("answer")) #set the starting Nonterminal, for geoquery: answer, for nlmaps: query, for overnight datasets: listValue
+generator = SemanticGenerator(NT("listValue")) #set the starting Nonterminal, for geoquery: answer, for nlmaps: query, for overnight datasets: listValue
 
 def semparse(sent):
     d = dict()
@@ -25,7 +25,7 @@ def semparse(sent):
     
 t1 = time()
 print("Reading corpus...")
-with open("datasets/geo/train.txt") as f: #nlmaps.train.enlisp
+with open("datasets/overnight_rec/train.txt") as f: #nlmaps.train.enlisp
     for line in f:
         nl, mrl = line.split("\t")
         try:
@@ -47,7 +47,7 @@ generator.train()
 t3 = time()
 print("done...took {}s".format(round(t3-t2,4)))
 
-with open("datasets/geo/test.txt") as f: #nlmaps.test.enlisp
+with open("datasets/overnight_rec/test.txt") as f: #nlmaps.test.enlisp
     korrekt = 0
     total = 0
     for i,line in enumerate(f):
@@ -64,5 +64,5 @@ with open("datasets/geo/test.txt") as f: #nlmaps.test.enlisp
         #~ if i%100 == 0:
             #~ print(i)
         
-    print("Accuracy:",korrekt,korrekt/total,total)
+    print("Accuracy:",korrekt/total, "that is",korrekt,"out of",total)
 

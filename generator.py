@@ -16,7 +16,7 @@ def train_a_classifier(classifierType,lhs,relevant_data, labels):
     return (lhs,clf)
 
 def getClassifier():
-    return MLPClassifier(hidden_layer_sizes=(150,),random_state=7,activation='relu',early_stopping=False,validation_fraction=0.1,tol=0.00001, verbose=False, max_iter=240)
+    return MLPClassifier(hidden_layer_sizes=(150,),random_state=7,activation='tanh',early_stopping=False,validation_fraction=0.1,tol=0.00001, verbose=False, max_iter=240)
 
 class SemanticGenerator:
     def __init__(self,startsymbol):

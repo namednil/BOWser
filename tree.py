@@ -115,8 +115,8 @@ class Tree:
             
         if addr[-1]>0: #not the first child of the parent
             left_sister = self.get_subtree_by_address(addr[:-1] +  [addr[-1]-1])
-            #features["RIGHTMOST_LEFT_SISTER"] = str(left_sister.rightmost_leave())
-            #features["LEFTMOST_LEFT_SISTER"] = str(left_sister.leftmost_leave())
+            features["RIGHTMOST_LEFT_SISTER"] = str(left_sister.rightmost_leave())
+            features["LEFTMOST_LEFT_SISTER"] = str(left_sister.leftmost_leave())
             features["_LEFT_SISTER_"] = str(left_sister.node)
         if len(self.get_subtree_by_address(addr[:-1]).children)-1> addr[-1]: #not the last child
             right_sister = self.get_subtree_by_address(addr[:-1] +  [addr[-1]+1])
