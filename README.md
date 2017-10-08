@@ -1,6 +1,7 @@
 # BOWser
 
 BOWser is a very simple **B**ag **o**f **w**ords **s**emantic pars**er** that generates syntax trees of the target context free language conditioned on the words of the input string without considering the syntax of the natural language input. Everything is induced from the data, it just requires a parallel training file.
+BOWser currently consists of less than 400 lines of python, most of which are for implementing trees.
 
 ## Dependencies
 only scikit-learn
@@ -26,9 +27,10 @@ BOWser trains relatively fast (seconds to at most a few minutes) and gives surpr
 | Overnight: housing          | 0.455    |
 | Overnight: recipes          | 0.704    |
 | Overnight: recipes (German) | 0.479    |
+
 Tried with varying activation functions (tanh or relu). With more feature engineering, slightly better results are to be expected.
 
-It makes sense that BOWser performance not so well on geoquery because it tends to be more compositional. 
+It makes sense that BOWser's performance is not so high on geoquery because it tends to be more compositional. 
 ## Datasets and literature
 
 - _Kwiatkowski et al. 10_: Inducing Probabilistic CCG Grammars from Logical Form with Higher-Order Unification
