@@ -4,7 +4,7 @@ BOWser is a very simple **B**ag **o**f **w**ords **s**emantic pars**er** that ge
 BOWser currently consists of less than 400 lines of python, most of which are for implementing trees.
 
 ## Dependencies
-only scikit-learn
+only python 3 and scikit-learn
 
 ## Input format
 BOWser requires the training and test files to be in the following format:
@@ -38,6 +38,6 @@ It makes sense that BOWser's performance is not so high on geoquery because it t
 - _Wang et al. 15_: Building a Semantic Parser Overnight
 - [Overnight datasets](https://worksheets.codalab.org/worksheets/0x269ef752f8c344a28383240f7bb2be9c/)
 - [German Overnight recipes](https://github.com/polinastd/semparse)
-- _Haas et al 16_: A Corpus and Semantic Parser for Multilingual Natural Language Querying of OpenStreetMap.
+- _Haas et al. 16_: A Corpus and Semantic Parser for Multilingual Natural Language Querying of OpenStreetMap.
 - [nlmaps corpus](http://www.cl.uni-heidelberg.de/statnlpgroup/nlmaps/)
 
