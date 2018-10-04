@@ -1,6 +1,6 @@
 # BOWser
 
-BOWser is a very simple **B**ag **o**f **w**ords **s**emantic pars**er** that generates syntax trees of the target context free language conditioned on the words of the input string without considering the syntax of the natural language input. Everything is induced from the data, it just requires a parallel training file.
+BOWser is a very simple **B**ag **o**f **w**ords **s**emantic pars**er** that generates syntax trees of the target context free language conditioned on the words of the input string **without considering the syntax** of the natural language input. Everything is induced from the data, it just requires a parallel training file.
 BOWser currently consists of less than 400 lines of python, most of which are for implementing trees.
 
 ## Dependencies
@@ -15,7 +15,7 @@ Go into the code of parse.py, set the path to the datasets and its start symbol 
 python3 parse.py
 
 ## Performance
-BOWser trains relatively fast (seconds to at most a few minutes) and gives surprisingly good results on some datasets that aren't too compositional.
+BOWser trains relatively fast (seconds to at most a few minutes) and gives surprisingly good results on some datasets (question split) that aren't too compositional - indicating that these corpora are too simple or the evaluation too generous.
 
 | dataset                     | accuracy |
 |-----------------------------|----------|
