@@ -28,7 +28,7 @@ BOWser trains relatively fast (seconds to at most a few minutes) and gives surpr
 | Overnight: recipes          | 0.704    |
 | Overnight: recipes (German) | 0.479    |
 
-Experiments were run with varying activation functions (tanh or relu). With more feature engineering, slightly better results are to be expected.
+Experiments were run with varying activation functions (tanh or relu). With more feature engineering, slightly better results are to be expected. See [here](https://github.com/namednil/BOWser/raw/master/HowItWorks.pdf) for a short description.
 
 It makes sense that BOWser's performance is not so high on geoquery because it tends to be more compositional. 
 ## Datasets and literature
