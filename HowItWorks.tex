@@ -1,0 +1,38 @@
+\documentclass{article}
+
+\usepackage[margin=25mm]{geometry}
+
+\usepackage{amsmath}
+
+\begin{document}
+	\title{Short description of BOWser}
+	\author{Matthias Lindemann}
+	\maketitle
+	
+	\section{Modeling}
+	
+	BOWser models a distribution of trees (without variables as they occur in e.g. SQL) given sentences $w$ by reading off a CFG, from which we generate using a straightforward factorization of the conditional distribution:
+	
+	\begin{align*}
+		P(t|w) = \prod_{i=1}^N P(\text{Children}(v_i)|T_i, w_1, \ldots, w_n)
+	\end{align*}
+	where $T$ is a sequence of subtrees of $t$ such that $T_i$ contains exactly those nodes of $t$ that have been visited in a pre-order traversal of $t$ up to step $i$. Similarly, $v_i$ is the node of $t$ that is visited at step $i$ in the pre-order traversal. In practice, the distribution $P(\text{Children}(v_i)|T_i, w_1, \ldots, w_n)$ is estimated with a small MLP for each non-terminal of the CFG that doesn't take into account the entire subtree $T_i$ but only certain features:
+	
+	\begin{itemize}
+		\item the words, \textit{disregarding their order!}
+		\item the depth of $v_i$
+		\item number of left sisters of $v_i$
+		\item the identity of the left and right sisters of $v_i$ (disregarding the order among them)
+		\item the leaves in $T_i$, without order
+		\item parent and grandparent of $v_i$
+	\end{itemize}
+
+	That is, this model is in spirit very similar to many modern deep semantic parsers but does this in the style of log-linear models. 
+	
+	\section{Inference}
+	Inference is performed greedily in a pre-order traversal, following the factorization. A cutoff of depth 50 is used to ensure termination.
+	
+	\section{Conclusion}
+	It is surprising that this works at all beyond tiny sentences/questions. Ignoring the syntax should have a noticeable price in accuracy and perhaps corpora with more complex syntactical structures are required to train and evaluate semantic parsers.
+	
+\end{document}

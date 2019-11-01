@@ -17,7 +17,7 @@ python3 parse.py
 ## Performance
 BOWser trains relatively fast (seconds to at most a few minutes) and gives surprisingly good results on some datasets (question split) that aren't too compositional - indicating that these corpora are too simple or the evaluation too generous.
 
-| dataset                     | accuracy |
+| dataset                     | complete tree accuracy |
 |-----------------------------|----------|
 | Variable free geoquery-880  | 0.493    |
 | nlmaps (English)            | 0.718    |
@@ -28,7 +28,7 @@ BOWser trains relatively fast (seconds to at most a few minutes) and gives surpr
 | Overnight: recipes          | 0.704    |
 | Overnight: recipes (German) | 0.479    |
 
-Tried with varying activation functions (tanh or relu). With more feature engineering, slightly better results are to be expected.
+Experiments were run with varying activation functions (tanh or relu). With more feature engineering, slightly better results are to be expected.
 
 It makes sense that BOWser's performance is not so high on geoquery because it tends to be more compositional. 
 ## Datasets and literature
